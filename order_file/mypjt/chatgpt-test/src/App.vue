@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="false">
+    <div>
       <img
         src="./assets/loading.gif"
         alt="loading"
@@ -25,16 +25,14 @@
         {{ movie }}
       </a>
     </div>
-    <HelloWorldVue />
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import HelloWorldVue from "./components/HelloWorld.vue";
 export default {
   name: "App",
-  components: { HelloWorldVue },
+  components: {},
   data() {
     return {
       is_loading: false,
