@@ -1,10 +1,10 @@
 <template>
-  <div v-if="this.moviedetail">
+  <div v-if="moviedetail">
     
     <p>{{this.moviedetail.title}}</p>
     <p>{{this.moviedetail.overview}}</p>
   
-    <img :src="`https://image.tmdb.org/t/p/w500/`+Movie.poster_path" alt="">
+    <img :src="`https://image.tmdb.org/t/p/w500/`+moviedetail.poster_path" alt="">
 
     <p>{{this.moviedetail.vote_average}}</p>
     <p>{{this.moviedetail.popularity}}</p>
@@ -29,7 +29,7 @@ export default {
       })
       .then(res =>{
         this.moviedetail = res.data
-        console.log(res.data)
+        console.log(res.data.title)
       })
       .catch(err => {
         console.log(err)
