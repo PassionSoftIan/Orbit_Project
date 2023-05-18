@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <hr>
+    <p>
+      http://127.0.0.1:8000/api/v1/movie/title/
+      <br>
+      요청 타입 : GET
+      <br>
+      params = { 영화 제목1, 영화 제목2, 영화 제목3, ... }
+      <br>
+      반환 값 : params에 있는 영화 중 DB에 있는 영화의 정보를 반환
+      <br>
+      목적 : chatgpt에서 추천받은 영화 중 DB에 있는 영화를 찾는 용도
+    </p>
+    <hr>
+    <p>
+      http://127.0.0.1:8000/api/v1/movie/
+      <br>
+      요청 타입 : GET
+      <br>
+      params = { order_by, page }
+      <br>
+      <asdf style="margin-left: 30px;">
+        page : required int
+      </asdf>
+      <br>
+      <asdf style="margin-left: 30px;">
+        order_by : `vote_average` or `popularity` default = `vote_average`
+      </asdf>
+      <br>
+      반환 값 : 데이터를 정렬 조건에 따라 정렬하며 페이지당 10개의 영화를 로드한다.
+      <br>
+      목적 : 전체 영화를 조회하는 용도
+    </p>
+    <hr>
+    <p>
+      http://127.0.0.1:8000/api/v1/movie/{movie_pk}
+      <br>
+      요청 타입 : GET
+      <br>
+      params = 없음
+      <br>
+      반환 값 : 해당 pk에 해당하는 영화의 정보를 반환 함
+      <br>
+      목적 : 특정 영화 정보 조회 용도
+    </p>
+    <p>
+      요청 타입 : PUT
+      <br>
+      body : { popularity }
+      <br>
+      반환 값 : pk에 해당하는 영화의 popularity가 수정된 정보를 반환함
+      <br>
+      목적 : 자체 평점 조회 용도
+    </p>
+    <hr>
+    <p>
+      http://127.0.0.1:8000/api/v1/review/{movie_pk}
+      <br>
+      요청 타입 : GET
+      <br>
+      params = 없음
+      <br>
+      반환 값 : pk에 해당하는 영화의 리뷰 정보를 반환 함
+      <br>
+      목적 : 영화 detail페이지에서 리뷰를 표시하는 용도
+    </p>
+    <p>
+      요청 타입 : POST
+      <br>
+      body : {vote, content}
+      <br>
+      <asdf style="margin-left: 30px;">
+        vote : required float
+      </asdf>
+      <br>
+      <asdf style="margin-left: 30px;">
+        content : 공백 가능
+      </asdf>
+      <br>
+      반환 값 : 생성된 리뷰 정보
+      <br>
+      목적 : 새로운 리뷰를 생성하는 용도
+    </p>
+    <hr>
+    <p>
+      http://127.0.0.1:8000/api/v1/review/detail/{review_pk}
+      <br>
+      요청 타입 : PUT
+      <br>
+      body : {vote, content}
+      <br>
+      <asdf style="margin-left: 30px;">
+        vote : required float
+      </asdf>
+      <br>
+      <asdf style="margin-left: 30px;">
+        content : 공백 가능
+      </asdf>
+      <br>
+      반환 값 : 수정된 리뷰 정보
+      <br>
+      목적 : 리뷰를 수정하는 용도
+    </p>
+    <p>
+      요청 타입 : DELETE
+      <br>
+      params = 없음
+      <br>
+      반환값 = 성공여부 반환
+      <br>
+      목적 : 리뷰를 삭제하는 용도
+    </p>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
+
+</html>
