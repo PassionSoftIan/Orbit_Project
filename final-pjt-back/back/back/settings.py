@@ -78,7 +78,6 @@ WSGI_APPLICATION = 'back.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
