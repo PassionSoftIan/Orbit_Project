@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import GameView from '../views/GameView.vue'
 import CommunityView from '../views/CommunityView.vue'
+import MovieDetail from '../views/MovieDetail.vue'
+
+
 
 
 Vue.use(VueRouter)
@@ -28,7 +31,12 @@ const routes = [
     // // this generates a separate chunk (about.[hash].js) for this route
     // // which is lazy-loaded when the route is visited.
     // component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+  },
+  {
+    path: '/MovieDetail/:moviepk',
+    name: 'MovieDetail',
+    component: MovieDetail
+  },
 ]
 
 const router = new VueRouter({
