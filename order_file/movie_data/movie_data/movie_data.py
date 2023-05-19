@@ -1,7 +1,11 @@
-import requests, json
+import requests, json, time
+
+start = time.time()
 
 def get_movie(page:int):
     global pk, genre_pk
+
+    print(f"{page}번째 페이지 요청합니다.")
 
     URL = 'https://api.themoviedb.org/3/movie/popular'
 
@@ -15,6 +19,8 @@ def get_movie(page:int):
     response = response.json()
 
     for i in range(20):
+        time.sleep(0.1)
+        print(f"{page}번째 페이지 {i}번째 영화 요청합니다.")
         detail_URL = f'https://api.themoviedb.org/3/movie/{response["results"][i]["id"]}'
         detail_params = {
           'language': 'ko-KR',
@@ -49,6 +55,8 @@ def get_movie(page:int):
                 break
         else:
             movie_data.append(data)
+            with open(f'movies.json', 'w') as save:
+                json.dump(movie_data, save)
 
 
 
@@ -84,9 +92,11 @@ for movie in movie_data:
                 "key": video_info["key"]
             }
         }
-        print("youtube 작업중", youtube_pk)
+        print(f"{youtube_pk}번째 영상 youtube 작업중")
         youtube_key.append(data)
         youtube_pk += 1
+        with open(f'youtube.json', 'w') as save:
+            json.dump(youtube_key, save)
 
 
 still_cut = []
@@ -114,16 +124,13 @@ for movie in movie_data:
             }
         }
 
-        print("still_cut 작업중", still_pk)
+        print(f"{still_pk}번째 still_cut 작업중")
 
         still_cut.append(data)
         still_pk += 1
+        with open(f'still.json', 'w') as save:
+            json.dump(still_cut, save)
 
-with open(f'movies.json', 'w') as save:
-    json.dump(movie_data, save)
+print(time.time() - start)
 
-with open(f'youtube.json', 'w') as save:
-    json.dump(youtube_key, save)
 
-with open(f'still.json', 'w') as save:
-    json.dump(still_cut, save)

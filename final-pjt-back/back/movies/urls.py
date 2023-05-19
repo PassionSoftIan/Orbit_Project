@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('movie/title/', views.get_movie_title),
+    path('movie/alltitle/', views.get_movie_all_title),
     path('movie/', views.get_movie),
     path('movie/<int:movie_pk>/', views.get_movie_detail),
     path('review/<int:movie_pk>/', views.review),

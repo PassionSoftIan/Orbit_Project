@@ -7,14 +7,20 @@ from .serializers import *
 ######################################################################
 @api_view(['GET'])
 def get_movie_title(request):
-    print("####################################")
-    print(list(request.GET))
-    print("####################################")
     movies = Movie.objects.filter(title__in=list(request.GET))
     serializer = MovieSerializer(movies, many=True)
 
     return Response(serializer.data)
     
+
+######################################################################
+@api_view(['GET'])
+def get_movie_all_title(request):
+    movies = Movie.objects.all()
+    serializer = MovietitleSerializer(movies, many=True)
+
+    return Response(serializer.data)
+
 
 ######################################################################
 @api_view(['GET'])
