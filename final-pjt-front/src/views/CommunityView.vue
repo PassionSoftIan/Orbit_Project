@@ -2,6 +2,13 @@
   <div class="community">
     <h1>Community</h1>
     <div>
+
+      <button>Top 100</button> |
+      <button>장르</button> |
+      <button>수익</button> |
+      <button>자체 평점</button> |
+      <button>랜덤</button> |
+
       <p>Top Rank</p>
       <hr>
       

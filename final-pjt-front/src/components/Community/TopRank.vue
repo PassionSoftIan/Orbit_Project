@@ -1,7 +1,8 @@
 
 <template>
   <div>
-    <router-link :to="{name:'MovieDetail', params:{moviepk:Movie.id}}">Game
+    <router-link :to="{name:'MovieDetail', params:{moviepk:Movie.id}}">
+      기본 라우터
     <p>{{Movie.title}}</p>
     <p>{{Movie.overview}}</p>
   
