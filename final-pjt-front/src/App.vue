@@ -30,4 +30,26 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
+
+<script>
+
+export default {
+  name:'App',
+  methods:{
+    MovieToStore(){
+
+      this.$store.dispatch('MovieToStore')
+    },
+    GenreToStore(){
+
+    this.$store.dispatch('GenreToStore')
+    },
+  },
+  created(){
+    this.GenreToStore(),
+    this.MovieToStore()
+  }
+}
+</script>
