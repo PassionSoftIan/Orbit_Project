@@ -9,6 +9,19 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 ############################################
+class Youtube_keySerializer(serializers.ModelSerializer):
+    class Meta():
+        model = youtube_key
+        fields = ('key',)
+
+
+############################################
+class Still_cutSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = stillcut
+        fields = ('img_url',)
+        
+############################################
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta():
         model = Review
@@ -20,6 +33,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 ############################################
 class MovieSerializer(serializers.ModelSerializer):
     genre = GenreSerializer(many=True, read_only=True)
+    youtube_key_set = Youtube_keySerializer(many=True, read_only=True)
+    stillcut_set = Still_cutSerializer(many=True, read_only=True)
 
     class Meta():
         model = Movie
