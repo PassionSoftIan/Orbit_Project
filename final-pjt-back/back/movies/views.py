@@ -30,13 +30,15 @@ def get_movie(request):
     except:
         return Response({'page' : "this key is required or need to int"}, status=400)
     try:
-        sort_key = request.GET['order_by']
+        sort_key = "-" + request.GET['order_by']
     except KeyError:
-        sort_key = 'vote_average'
+        sort_key = '-vote_average'
 
-    
-
-    movies = Movie.objects.all().order_by(sort_key)[page*10:page*10+10]
+    try:
+        genre = request.GET['genre']
+        movies = Movie.objects.filter(genre = genre).order_by(sort_key)[:100]
+    except KeyError:
+        movies = Movie.objects.all().order_by(sort_key)[page*10:page*10+10]
     # movies = Movie.objects.all()[page*10:page*10+10]
     serializers = MovieSerializer(movies, many=True)
 
@@ -89,6 +91,17 @@ def review_detail(request, review_pk):
         return Response({"message":"clear delete"}, status=204)
 
 
+######################################################################
+@api_view(['GET'])
+def genre_list(request):
+    genre = Genre.objects.all()
+    serializer = GenreSerializer(genre, many=True)
+
+    return Response(serializer.data)
+
+
+
+######################################################################
 def api_list(request):
     return render(request, 'movies/apilist.html')
     
