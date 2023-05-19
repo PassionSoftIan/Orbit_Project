@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('movies.urls')),
     path('game/', include('games.urls')),
-
+    # Auth 위해 URL 추가(인식)
+    path('accounts/', include('dj_rest_auth.urls')),
+    path('accounts/signup/', include('dj_rest_auth.registration.urls')),
 ]

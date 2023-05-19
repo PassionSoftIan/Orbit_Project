@@ -38,7 +38,8 @@ def get_movie(request):
         genre = request.GET['genre']
         movies = Movie.objects.filter(genre = genre).order_by(sort_key)[:100]
     except KeyError:
-        movies = Movie.objects.all().order_by(sort_key)[page*10:page*10+10]
+        print(sort_key)
+        movies = Movie.objects.all()
     # movies = Movie.objects.all()[page*10:page*10+10]
     serializers = MovieSerializer(movies, many=True)
 
@@ -72,7 +73,7 @@ def review(request, movie_pk):
     if request.method == "POST":
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(movie=movie)
+            serializer.save(movie=movie, user=request.user)
             return Response(serializer.data, status=201)
         
 
@@ -80,6 +81,9 @@ def review(request, movie_pk):
 @api_view(['PUT', 'DELETE'])
 def review_detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
+    if review.user != request.user:
+        return Response({"message":"User isn't authenticated"}, status=401)
+
     if request.method == "PUT":
         serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid(raise_exception=True):
