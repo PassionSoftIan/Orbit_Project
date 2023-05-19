@@ -59,11 +59,11 @@ def get_movie(page:int):
                 json.dump(movie_data, save)
 
 
-
-movie_data = []
+with open("movies.json", "r") as save:
+    movie_data = json.load(save)
 
 pk = 1
-for i in range(1, 501):
+for i in range(263, 501):
     get_movie(i)
 
 youtube_key = []

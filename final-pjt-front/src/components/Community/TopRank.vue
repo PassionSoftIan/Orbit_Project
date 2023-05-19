@@ -2,14 +2,16 @@
 <template>
   <div>
     <router-link :to="{name:'MovieDetail', params:{moviepk:Movie.id}}">
-      기본 라우터
+
     <p>{{Movie.title}}</p>
     <p>{{Movie.overview}}</p>
+    <p>{{Movie.genre}}</p>
+
   
     <img :src="`https://image.tmdb.org/t/p/w500/`+Movie.poster_path" alt="">
 
     <p>{{Movie.vote_average}}</p>
-    <p>{{Movie.popularity}}</p>
+    <p>수익: {{Movie.revenue}}</p>
     
     </router-link>
     <hr>

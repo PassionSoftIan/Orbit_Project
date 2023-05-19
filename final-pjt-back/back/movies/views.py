@@ -36,10 +36,9 @@ def get_movie(request):
 
     try:
         genre = request.GET['genre']
-        movies = Movie.objects.filter(genre = genre).order_by(sort_key)[:100]
+        movies = Movie.objects.filter(genre = genre).filter(revenue__gte = 10000).order_by(sort_key)[:100]
     except KeyError:
-        print(sort_key)
-        movies = Movie.objects.all()
+        movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*10:page*10+10]
     # movies = Movie.objects.all()[page*10:page*10+10]
     serializers = MovieSerializer(movies, many=True)
 
