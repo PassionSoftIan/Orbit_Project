@@ -1,26 +1,18 @@
 <template>
   <div>
-    <p>ChatGpt 에서 인사 드립니다</p>
-    <input type="text" name="" id="">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <p>응답 출력</p>
+    <p>{{ chatgpt_answer }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ChatGpt'
-}
+  name: "ChatGpt",
+  props: {
+    chatgpt_answer: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>

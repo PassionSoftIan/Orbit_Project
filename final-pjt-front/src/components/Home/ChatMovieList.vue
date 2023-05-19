@@ -1,26 +1,28 @@
 <template>
   <div>
-    <p>MovieList 에서 인사 드립니다</p>
-    <input type="text" name="searchbar" id="searchbar">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <p>여기는 movielist</p>
+
+    <ChatMovieListItemVue
+      :movie="movie"
+      v-for="movie of movie_list"
+      :key="movie.id"
+    />
   </div>
 </template>
 
 <script>
+import ChatMovieListItemVue from "./ChatMovieListItem.vue";
 export default {
-  name: 'MovieList'
-}
+  name: "MovieList",
+  components: {
+    ChatMovieListItemVue,
+  },
+  props: {
+    movie_list: Array,
+  },
+  methods: {},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>
