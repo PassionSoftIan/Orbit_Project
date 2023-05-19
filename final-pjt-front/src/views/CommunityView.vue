@@ -3,20 +3,27 @@
     <h1>Community</h1>
     <div>
 
-      <button>Top 100</button> |
-      <button>장르</button> |
-      <button>수익</button> |
-      <button>자체 평점</button> |
-      <button>랜덤</button> |
+      <button @click="CommunityBarOnClick('Top100') " :disabled="this.CommunityBarValue==='Top100'">Top 100</button> |
+      <button @click="CommunityBarOnClick('Genre')" :disabled="this.CommunityBarValue==='Genre'">장르</button> |
+      <button @click="CommunityBarOnClick('Revenue')" :disabled="this.CommunityBarValue==='Revenue'">수익</button> |
+
 
       <p>Top Rank</p>
       <hr>
-      
+      <div v-if="this.CommunityBarValue === 'Top100'">
       <TopRank
       v-for="Movie in Movies"
       :key="Movie.id"
       :Movie='Movie'
       />
+      </div>
+      <div v-else-if="this.CommunityBarValue === 'Genre'">
+        <p>Genre</p>
+
+      </div>
+      <div v-else-if="this.CommunityBarValue === 'Revenue'">
+        <p>Revenue</p>
+      </div>
 
       </div>
   </div>
@@ -30,16 +37,29 @@ export default {
   name: 'CommunityView',
   data(){
     return{
-      Movies:null
+      Movies:null,
+      CommunityBarValue: 'Top100'
     }
   },
   components:{
     TopRank,
   },
   methods:{
+    CommunityBarOnClick(value){
+      if(this.CommunityBarValue === value){
+        event.preventDefault()
+        console.log('stop')
+      }
+      else {
+        this.CommunityBarValue = value
+        
+      }
+      
+
+    },
     TopRanks(){
       const params = {
-        order_by: 'popularity',
+        order_by: 'title',
         page: '1',
       }
       axios({
@@ -49,6 +69,7 @@ export default {
       })
       .then(res =>{
         this.Movies = res.data
+        console.log("HI")
         
       })
       .catch(err =>{
