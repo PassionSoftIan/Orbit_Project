@@ -1,18 +1,39 @@
 <template>
   <div>
-    <p>응답 출력</p>
-    <p>{{ chatgpt_answer }}</p>
+    <span v-for="(char, index) in visibleChars" :key="index">
+      <span v-if="char">{{ char }}</span>
+    </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ChatGpt",
   props: {
-    chatgpt_answer: String,
+    message: {
+      type: String,
+      required: true
+    }
   },
+  data() {
+    return {
+      visibleChars: []
+    };
+  },
+  mounted() {
+    this.animateText();
+  },
+  methods: {
+    animateText() {
+      let index = 0;
+      const intervalId = setInterval(() => {
+        this.$set(this.visibleChars, index, this.message[index]);
+        index++;
+        if (index >= this.message.length) {
+          clearInterval(intervalId);
+          this.$emit("print_clear")
+        }
+      }, 50); // 각 글자를 표시하는 간격 (200ms로 설정됨)
+    }
+  }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
