@@ -151,6 +151,7 @@ export default {
   },
   created(){
     this.TopRanks('Top100')
+    
   }
 }
 </script>
