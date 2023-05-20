@@ -52,4 +52,5 @@ class MoviepopularitySerializer(serializers.ModelSerializer):
 class MovietitleSerializer(serializers.ModelSerializer):
     class Meta():
         model = Movie
-        fields = ('id', 'title')
+        # 기존 fields(id, title) 에 'revenue','vote_average','poster_path' 추가(세울!)
+        fields = ('id', 'title','revenue','vote_average','poster_path')
