@@ -3,7 +3,7 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/community">COMMUNITY</router-link> |
-      <router-link to="/game">Game</router-link>
+      <router-link to="/game">Game</router-link> | <SearchModalDisplay/>
     </nav>
     <router-view/>
   </div>
@@ -35,21 +35,35 @@ nav a.router-link-exact-active {
 
 <script>
 
+
+import SearchModalDisplay from './components/SearchModalDisplay.vue'
+
 export default {
   name:'App',
+  components:{
+    SearchModalDisplay
+  },
+
   methods:{
+
+
+    // 영화 타이틀과 id를 store에 저장
     MovieToStore(){
 
       this.$store.dispatch('MovieToStore')
+
     },
+    // 장르타이틀과 id를 store에 저장
     GenreToStore(){
 
     this.$store.dispatch('GenreToStore')
     },
+
   },
   created(){
     this.GenreToStore(),
     this.MovieToStore()
-  }
+  },
+
 }
 </script>
