@@ -4,6 +4,8 @@ import HomeView from '../views/HomeView.vue'
 import GameView from '../views/GameView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import MovieDetail from '../views/MovieDetail.vue'
+import LoginView from '../views/LoginView.vue'
+import SignUpView from '../views/SignUpView.vue'
 
 
 
@@ -37,6 +39,18 @@ const routes = [
     name: 'MovieDetail',
     component: MovieDetail
   },
+  // login page(인식)
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  // signup page(인식)
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignUpView
+  },
 ]
 
 const router = new VueRouter({
@@ -45,4 +59,19 @@ const router = new VueRouter({
   routes
 })
 
+// 로그인 여부 확인 및 제한(인식)
+router.beforeEach((to, from, next) => {
+  // 로그인 여부
+  const isLoggedIn = true
+  // 로그인이 필요한 페이지 지정
+  const authPages = ['home', 'community', 'game']
+  // 앞으로 이동할 페이지(to)가 로그인이 필요한 페이지인지 확인
+  const isAuthRequired = authPages.includes(to.name)
+
+  if (isAuthRequired && !isLoggedIn) {
+    next({ name: 'login'})
+  } else {
+    next()
+  }
+})
 export default router

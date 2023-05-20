@@ -26,7 +26,7 @@
 <script>
 import _ from 'lodash'
 
-import SearchModal from './SearchModal.vue'
+import SearchModal from '@/components/SearchBar/SearchModal.vue'
 
 export default {
   name:'SearchModalDisplay',
