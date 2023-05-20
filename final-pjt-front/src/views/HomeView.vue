@@ -1,11 +1,17 @@
 <template>
   <div class="home">
     <h1>Home</h1>
+          <img
+        src="../assets/loading.gif"
+        alt="loading"
+        id="loading"
+        v-show="is_loading"
+      />
     <br />
     <ChatSearch @search="search" />
     <hr />
-    <ChatGpt :chatgpt_answer="chatgpt_answer" />
-    <ChatMovieList :movie_list="response_movie_list" />
+    <ChatGpt v-if="chatgpt_answer" :message="chatgpt_answer" @print_clear="print_movie"/>
+    <ChatMovieList v-if="get_chatgpt_answer" :movie_list="response_movie_list" />
   </div>
 </template>
 
@@ -25,14 +31,21 @@ export default {
   },
   data() {
     return {
-      chatgpt_answer: "",
+      chatgpt_answer: null,
       movie_list: {},
       response_movie_list: [],
+      get_chatgpt_answer: false,
+      is_loading:false,
     };
   },
   methods: {
     search(searchkeyword) {
       console.log("도와줘");
+      this.chatgpt_answer = null;
+      this.movie_list = {};
+      this.response_movie_list = [];
+      this.get_chatgpt_answer = false;
+      this.is_loading = true;
       const ChatGPTURL = "https://api.openai.com/v1/chat/completions";
       const API_KEY = "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";
 
@@ -54,11 +67,13 @@ export default {
         },
       })
         .then((response) => {
-          this.chatgpt_answer = response.data.choices[0].message.content;
+          this.is_loading = false;
+          this.chatgpt_answer = response.data.choices[0].message.content
           this.change_answer_to_object();
         })
         .catch((error) => {
-          console.log("에러");
+          this.is_loading = false;
+          console.log("chatgpt 응답 에러");
           console.log(error);
         });
     },
@@ -105,6 +120,18 @@ export default {
           console.log(error);
         });
     },
+    print_movie(){
+      this.get_chatgpt_answer = true
+    }
   },
 };
 </script>
+
+<style scoped>
+#loading {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 50%;
+}
+</style>
