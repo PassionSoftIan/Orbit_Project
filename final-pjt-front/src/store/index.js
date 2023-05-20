@@ -3,10 +3,13 @@ import Vuex from 'vuex'
 import axios from 'axios'
 Vue.use(Vuex)
 
+const Token = 'cf7fae62f05d9054baaeee1828799de0b3e8a50b'
+
 export default new Vuex.Store({
   state: {
     MovieStore:null,
-    GenreStore:null
+    GenreStore:null,
+    Token: Token,
   },
   getters: {
   },

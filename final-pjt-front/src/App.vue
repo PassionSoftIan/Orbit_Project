@@ -1,68 +1,38 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/community">COMMUNITY</router-link> |
-      <router-link to="/game">Game</router-link> | <SearchModalDisplay/>
-    </nav>
-    <router-view/>
+  <div v-if="isAuthenticated">
+    <BaseView />
+  </div>
+  <div v-else>
+    <LoginView v-show="!isSignUp" @signUp="toggle"/>
+    <SignUpView v-show="isSignUp" @logIn="toggle"/>
   </div>
 </template>
 
 <script>
-
-import SearchModalDisplay from './components/SearchModalDisplay.vue'
+import BaseView from "@/views/BaseView.vue"
+import LoginView from "@/views/LoginView.vue"
+import SignUpView from "@/views/SignUpView.vue"
 
 export default {
-  name:'App',
-  components:{
-    SearchModalDisplay
+  components: {
+    BaseView,
+    LoginView,
+    SignUpView,
   },
-
-  methods:{
-
-
-    // 영화 타이틀과 id를 store에 저장
-    MovieToStore(){
-
-      this.$store.dispatch('MovieToStore')
-
-    },
-    // 장르타이틀과 id를 store에 저장
-    GenreToStore(){
-
-    this.$store.dispatch('GenreToStore')
-    },
-
+  data() {
+    return {
+      isAuthenticated: true,
+      isSignUp: false,
+    }
   },
-  created(){
-    this.GenreToStore(),
-    this.MovieToStore()
-  },
-
+  methods: {
+    toggle(){
+      this.isSignUp=!this.isSignUp
+    }
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 
 </style>
