@@ -6,6 +6,8 @@ import CommunityView from '../views/CommunityView.vue'
 import MovieDetail from '../views/MovieDetail.vue'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
+// Store의 Token 값을 가져오기 위해 (인식)
+import store from '@/store/'
 
 
 
@@ -62,14 +64,19 @@ const router = new VueRouter({
 // 로그인 여부 확인 및 제한(인식)
 router.beforeEach((to, from, next) => {
   // 로그인 여부
-  const isLoggedIn = true
+  const isLoggedIn = store.state.Token
   // 로그인이 필요한 페이지 지정
-  const authPages = ['home', 'community', 'game']
+  const authPages = ['home', 'community', 'game', 'logout']
+  // 로그인 이후 login, signup 페이지 이동 방지
+  const loginPages = ['login','signup']
+  const isLoginPages = loginPages.includes(to.name)
   // 앞으로 이동할 페이지(to)가 로그인이 필요한 페이지인지 확인
   const isAuthRequired = authPages.includes(to.name)
 
   if (isAuthRequired && !isLoggedIn) {
-    next({ name: 'login'})
+    next({ name: 'login' })
+  } else if (isLoginPages && isLoggedIn) {
+    next({ name: 'home' })
   } else {
     next()
   }

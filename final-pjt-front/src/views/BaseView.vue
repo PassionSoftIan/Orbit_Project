@@ -13,7 +13,7 @@
         <router-link to="/game" class="nav-link">Game</router-link>
       </b-navbar-nav>
       <b-navbar-nav>
-        <router-link to="/logout" class="nav-link">logout</router-link>
+        <button @click="logOut">Logout</button>
         <SearchModalDisplay class="nav-link"/>
         <p class="nav-link">Profile</p>
       </b-navbar-nav>
@@ -47,8 +47,13 @@ export default {
     GenreToStore(){
 
     this.$store.dispatch('GenreToStore')
-    },
 
+    },
+    // logout 후 페이지 새로고침 기능(인식)
+    logOut() {
+      this.$store.dispatch('logOut')
+      location.reload()
+    },
   },
   created(){
     
