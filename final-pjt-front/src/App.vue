@@ -21,13 +21,17 @@ export default {
   },
   data() {
     return {
-      isAuthenticated: true,
       isSignUp: false,
     }
   },
   methods: {
     toggle(){
       this.isSignUp=!this.isSignUp
+    },
+  },
+  computed: {
+    isAuthenticated(){
+      return this.$store.state.Token
     }
   }
 }
