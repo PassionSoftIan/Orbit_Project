@@ -1,12 +1,25 @@
 <template>
   <div id="BaseView">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/community">COMMUNITY</router-link> |
-      <router-link to="/game">Game</router-link> | <SearchModalDisplay/>
-      <!-- logout 버튼 (인식) -->
-      <button @click="logOut">Logout</button>
-    </nav>
+  <b-navbar toggleable="lg" type="dark" variant="dark" class="sticky-top" >
+    <div class="container">
+    <router-link to="/" class="navbar-brand"><img src="../images/logo2.png" style="width: 50%; height: auto;" class='logo' alt=""></router-link>
+
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+    <b-collapse id="nav-collapse" is-nav class='justify-content-between' >
+      <b-navbar-nav>
+        <router-link to="/" class="nav-link">Home</router-link>
+        <router-link to="/community" class="nav-link">Community</router-link>
+        <router-link to="/game" class="nav-link">Game</router-link>
+      </b-navbar-nav>
+      <b-navbar-nav>
+        <button @click="logOut">Logout</button>
+        <SearchModalDisplay class="nav-link"/>
+        <p class="nav-link">Profile</p>
+      </b-navbar-nav>
+    </b-collapse>
+    </div>
+  </b-navbar>
     <router-view/>
   </div>
 </template>
@@ -43,6 +56,7 @@ export default {
     },
   },
   created(){
+    
     this.GenreToStore(),
     this.MovieToStore()
   },
@@ -57,19 +71,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+  position: relative;
 }
 
 </style>

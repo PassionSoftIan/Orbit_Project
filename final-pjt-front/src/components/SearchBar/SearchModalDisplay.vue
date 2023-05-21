@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-button @click="ModalReset" variant="primary">검색</b-button>
+  <div id='SearchModalDisplay'>
+    <b-button @click="ModalReset" variant='Dark' ><img class='search-icon' src="@/images/searchicon3.png" alt=""></b-button>
 
       <b-modal v-model="modalShow">제목 검색: 
         <input type="text" @input='changeKeyword' @keyup="SearchTitle">
@@ -110,4 +110,8 @@ export default {
 
 <style>
 
+.search-icon {
+  background-color: black;
+  width: 25px;
+}
 </style>
