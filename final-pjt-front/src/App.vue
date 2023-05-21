@@ -1,4 +1,6 @@
 <template>
+<div id="app" >
+
   <div v-if="isAuthenticated">
     <BaseView />
   </div>
@@ -6,6 +8,8 @@
     <LoginView v-show="!isSignUp" @signUp="toggle"/>
     <SignUpView v-show="isSignUp" @logIn="toggle"/>
   </div>
+  </div>
+
 </template>
 
 <script>
@@ -38,5 +42,4 @@ export default {
 </script>
 
 <style>
-
 </style>
