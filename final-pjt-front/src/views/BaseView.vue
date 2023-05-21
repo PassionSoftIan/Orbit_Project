@@ -4,9 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/community">COMMUNITY</router-link> |
       <router-link to="/game">Game</router-link> | <SearchModalDisplay/>
-      <router-link to="/logout">logout</router-link> |
-      <!-- <router-link to="/login">Login</router-link> |
-      <router-link to="/signup">Sign Up</router-link> -->
+      <!-- logout 버튼 (인식) -->
+      <button @click="logOut">Logout</button>
     </nav>
     <router-view/>
   </div>
@@ -35,8 +34,13 @@ export default {
     GenreToStore(){
 
     this.$store.dispatch('GenreToStore')
-    },
 
+    },
+    // logout 후 페이지 새로고침 기능(인식)
+    logOut() {
+      this.$store.dispatch('logOut')
+      location.reload()
+    },
   },
   created(){
     this.GenreToStore(),
