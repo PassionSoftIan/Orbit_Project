@@ -1,6 +1,5 @@
 <template>
 <div id="app" >
-
   <div v-if="isAuthenticated">
     <BaseView />
   </div>
@@ -42,4 +41,7 @@ export default {
 </script>
 
 <style>
+#app{
+  color : red
+}
 </style>
