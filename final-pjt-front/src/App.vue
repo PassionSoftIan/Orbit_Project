@@ -42,4 +42,11 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'orbit';
+  src: url('../public/fonts/orbit.ttf');
+}
+#app {
+  font-family: 'orbit';
+}
 </style>
