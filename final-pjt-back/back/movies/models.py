@@ -32,6 +32,8 @@ class Review(models.Model):
     updateed_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    # 리뷰 작성자 이름 게시하기 위해서 field작성 (인식)
+    username = models.TextField(blank=True)
 
 
 ########################################################

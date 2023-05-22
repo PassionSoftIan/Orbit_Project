@@ -1,11 +1,13 @@
 <template>
   <div>
-    <p>작성자 : {{review.user}}</p>
+    <p>작성자 : {{review.username}}</p>
     <div v-if="!isupdate">
         <p>평  점 : {{review.vote}}</p>
         <p v-if="review.content">내용 : {{review.content}}</p>
-        <button @click="is_update">수정하기</button>
-        <button @click="update_or_delete('delete')">삭제하기</button>
+        <div v-if="review.user === accounts.pk">
+            <button @click="is_update">수정하기</button>
+            <button @click="update_or_delete('delete')">삭제하기</button>
+        </div>
     </div>
     <div v-if="isupdate">
         <span>평  점 : </span>
@@ -26,6 +28,7 @@ export default {
     name:"ReadReview",
     props:{
         review:Object,
+        accounts:Object,
     },
     computed:{
         Token(){
@@ -36,6 +39,7 @@ export default {
         return{
             content: this.review.content,
             vote: this.review.vote,
+            
             isupdate: false,
         }
     },

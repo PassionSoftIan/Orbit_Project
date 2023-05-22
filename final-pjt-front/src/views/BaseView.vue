@@ -52,7 +52,7 @@ export default {
     // logout 후 페이지 새로고침 기능(인식)
     logOut() {
       this.$store.dispatch('logOut')
-      location.reload()
+      // location.reload()
     },
   },
   created(){
