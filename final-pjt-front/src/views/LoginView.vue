@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style>
+
 .login-container {
   display: flex;
   justify-content: center;
