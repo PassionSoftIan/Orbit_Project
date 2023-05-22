@@ -38,7 +38,7 @@ def get_movie(request):
         genre = request.GET['genre']
         movies = Movie.objects.filter(genre = genre).filter(revenue__gte = 10000).order_by(sort_key)[:100]
     except KeyError:
-        movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*10:page*10+10]
+        movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*20:page*20+20]
     # movies = Movie.objects.all()[page*10:page*10+10]
     serializers = MovieSerializer(movies, many=True)
 
@@ -67,6 +67,7 @@ def review(request, movie_pk):
     if request.method == "GET":
         reviews = movie.review_set.all()
         serializer = ReviewSerializer(reviews, many=True)
+        print(serializer.data)
         return Response(serializer.data)
     
     if request.method == "POST":

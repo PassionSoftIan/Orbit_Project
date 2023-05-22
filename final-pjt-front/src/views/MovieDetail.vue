@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.moviedetail">
+  <div v-if="moviedetail">
     
     <p>{{this.moviedetail.title}}</p>
     <p>{{this.moviedetail.overview}}</p>
@@ -28,7 +28,6 @@
     <br>
     <br>
   </div>
-  <div v-else></div>
 </template>
 
 <script>
