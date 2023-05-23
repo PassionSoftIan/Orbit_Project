@@ -42,8 +42,11 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 ############################################
+
 class ReviewReadSerializer(serializers.ModelSerializer):
     user = userSerializer(read_only=True)
+    liked_user = userSerializer(many=True, read_only=True)
+
     class Meta():
         model = Review
         fields = '__all__'
@@ -75,3 +78,24 @@ class MovietitleSerializer(serializers.ModelSerializer):
         model = Movie
         # 기존 fields(id, title) 에 'revenue','vote_average','poster_path' 추가(세울!)
         fields = ('id', 'title','revenue','vote_average','poster_path')
+
+
+############################################
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = Comment
+        fields = '__all__'
+
+        read_only_fields = ('user', 'review')
+
+############################################
+class CommentReadSerializer(serializers.ModelSerializer):
+    user = userSerializer(read_only=True)
+
+    class Meta():
+        model = Comment
+        fields = '__all__'
+
+        read_only_fields = ('user', 'review')
+
+
