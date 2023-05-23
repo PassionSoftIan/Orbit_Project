@@ -1,52 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <nav class="navbar">
-    <div class="logo">
-      <img src="netflix_logo.png" alt="Netflix Logo">
+<div class="container">
+  <p>Popular on Netflix</p>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/ba7hnMx1HAze0QSJSNfsTBycS8U.jpg" alt="">
     </div>
-    <ul class="nav-links">
-      <li><a href="#">홈</a></li>
-      <li><a href="#">TV 프로그램</a></li>
-      <li><a href="#">영화</a></li>
-      <li><a href="#">신규 콘텐츠</a></li>
-      <li><a href="#">내 목록</a></li>
-    </ul>
-  </nav>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/c3XBgBLzB9Sh7k7ewXY2QpfH47L.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/b5rOkbQ0jKYvBqBf3bwJ6nXBOtx.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/aNsrgElf0fiKBSR8cWWEL6XUTte.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/dueiWzWc81UAgnbDAyH4Gjqnh4n.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/hwNRc9ZWrakGdql22srY7DqtmRQ.jpg" alt="">
+    </div>
+    
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/trAOGwksvgHYNpbK4GewbjYQ1pi.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/zAIippNnm6o0gYEtjapbjQSxP8G.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/tNyJxHK3m7NAAKNYITLJ5oxS0YR.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/hMh1mR2kNl8kHjpIuPh4TICTwjo.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/c4EkF5JAZ83bUqNErhuSd9xw6uJ.jpg" alt="">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://image.tmdb.org/t/p/w500/79DgItjsyH5tpA3mC2xv5gU2zlZ.jpg" alt="">
+    </div>
+  </div>
   
-</body>
+  <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+</div>
+
 <style>
-  .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #000;
-  padding: 10px;
+:root {
+  --swiper-theme-color: #e5e5e5 !important;
 }
 
-.logo img {
-  width: 100px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+  background: #141414;
+  font-family: 'Roboto', sans-serif;
+  color: #e5e5e5;
+  overflow-x: hidden;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
+.container {
+  margin-top: 2rem;
 }
 
-.nav-links li {
-  margin-right: 10px;
+.swiper-container {
+  overflow: visible;
 }
 
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
+
+p {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.swiper-slide {
+  transition: all 300ms ease-in-out;
+  border-radius: 5px;
 }
 
+.swiper-slide img {
+  border-radius: 5px;
+  max-width: 18rem;
+  cursor: grab;
+}
+
+.swiper-slide img:active {
+  cursor: grabbing;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.5);
+  transition: all 300ms ease-in-out;
+  transition-delay: 300ms;
+  z-index: 1;
+}
+
+.swiper-slide:hover img {
+  transition-delay: 300ms;
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width: 599px) {
+  .swiper-slide img {
+    max-width: 14rem;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .swiper-slide img {
+    max-width: 10.5rem;
+    border-radius: 2px;
+  }
+}
 </style>
-</html>

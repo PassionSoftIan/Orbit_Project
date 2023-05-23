@@ -28,7 +28,6 @@
     <br>
     <br>
   </div>
-  <div v-else></div>
 </template>
 
 <script>
