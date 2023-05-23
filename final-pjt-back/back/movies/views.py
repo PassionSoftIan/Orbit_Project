@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import *
 from .serializers import *
+from django.db.models import F,Value,ExpressionWrapper
 
 ######################################################################
 @api_view(['GET'])
@@ -22,6 +23,7 @@ def get_movie_all_title(request):
     return Response(serializer.data)
 
 
+
 ######################################################################
 @api_view(['GET'])
 def get_movie(request):
@@ -34,14 +36,37 @@ def get_movie(request):
     except KeyError:
         sort_key = '-vote_average'
 
+
     try:
-        genre = request.GET['genre']
-        movies = Movie.objects.filter(genre = genre).filter(revenue__gte = 10000).order_by(sort_key)[:100]
+        genre_list = [('12','모험'),
+                    ('14',	'판타지'),
+                    ('16',	'애니메이션'),
+                    ('18',	'드라마'),
+                    ('27',	'공포'),
+                    ('28',	'액션'),
+                    ('35',	'코미디'),
+                    ('36',	'역사'),
+                    ('37',	'서부'),
+                    ('53',	'스릴러'),
+                    ('80',	'범죄'),
+                    ('99',	'다큐멘터리'),
+                    ('878',	'SF'),
+                    ('9648',	'미스터리'),
+                    ('10402',	'음악'),
+                    ('10749',	'로맨스'),
+                    ('10751',	'가족'),
+                    ('10752',	'전쟁'),]
+        test = request.GET['genre']
+        for genre,name in genre_list:
+            movies = Movie.objects.filter(genre = genre).filter(revenue__gte = 50).order_by(sort_key)[:100].annotate(genre_annotation=Value(name,output_field=models.CharField(max_length=50)))
+            
+        
+        
     except KeyError:
         movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*20:page*20+20]
     # movies = Movie.objects.all()[page*10:page*10+10]
     serializers = MovieSerializer(movies, many=True)
-
+    
     return Response(serializers.data)
 
 

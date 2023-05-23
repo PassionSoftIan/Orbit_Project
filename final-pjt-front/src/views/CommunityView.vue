@@ -18,7 +18,7 @@
 <script>
 
 import axios from 'axios'
-import _ from 'lodash'
+// import _ from 'lodash'
 import TopRank from '../components/Community/TopRank.vue'
 
 export default {
@@ -71,9 +71,9 @@ export default {
     }},
 
     // random으로 장르에서 가져오기
-    OnClickGenre(id,name){
+    OnClickGenre(){
       const params = {
-        genre: id,
+        genre: 12,
         page: '0',
       }
       axios({
@@ -82,15 +82,16 @@ export default {
         params:params
       })
       .then(res =>{
-        const random = _.sampleSize(_.range(0, res.data.length), 10)
-        var randommovie = []
-        random.forEach(element => {
-          randommovie.push(res.data[element])
-        });
-        const Movies = {'name':name, 'data':_.sortBy(randommovie,'vote_average').reverse()}
-        this.allMovies.push(Movies)
+        console.log(res.data)
+        // const random = _.sampleSize(_.range(0, res.data.length), 10)
+        // var randommovie = []
+        // random.forEach(element => {
+        //   randommovie.push(res.data[element])
+        // });
+        // const Movies = {'name':12, 'data':_.sortBy(randommovie,'vote_average').reverse()}
+        // this.allMovies.push(Movies)
 
-        this.GenreRandom = _.sortBy(randommovie,'vote_average').reverse()
+        // this.GenreRandom = _.sortBy(randommovie,'vote_average').reverse()
 
 
         
@@ -98,13 +99,12 @@ export default {
       .catch(err =>{
         console.log(err)
       })
-
-      console.log(id)
     }
     
   },
   created(){
     this.TopRanks('Top100')
+    this.OnClickGenre('1','1')
     // this.TopRanks('Revenue')
     // this.$store.state.GenreStore.forEach(element => {
     //   this.OnClickGenre(element.id,element.name)
