@@ -47,6 +47,6 @@ export default {
 }
 #app {
   font-family: 'orbit';
-  color : red;
+  color: blanchedalmond;
 }
 </style>

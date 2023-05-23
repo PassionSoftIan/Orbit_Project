@@ -2,7 +2,10 @@
   <div id="BaseView">
   <b-navbar toggleable="lg" type="dark" variant="dark" class="sticky-top" >
     <div class="container">
-    <router-link to="/" class="navbar-brand"><img src="../images/logo2.png" style="width: 50%; height: auto;" class='logo' alt=""></router-link>
+    <router-link to="/" class="navbar-brand">
+    <!-- <img src="../images/logo_transparent.png" class='logo' alt=""> -->
+    <h1 class="logo">Orbit</h1>
+    </router-link>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -13,8 +16,8 @@
         <router-link to="/game" class="nav-link">Game</router-link>
       </b-navbar-nav>
       <b-navbar-nav class="button">
-        <SearchModalDisplay class="nav-link"/>
-        <button class="profile">Profile</button>
+        <!-- <SearchModalDisplay class="nav-link"/> -->
+        <router-link to="/profile" class="nav-link" id="profile">Profile</router-link>
         <button @click="logOut" class="logout">Logout</button>
       </b-navbar-nav>
     </b-collapse>
@@ -26,12 +29,12 @@
 
 <script>
 
-import SearchModalDisplay from '@/components/SearchBar/SearchModalDisplay.vue'
+// import SearchModalDisplay from '@/components/SearchBar/SearchModalDisplay.vue'
 
 export default {
   name:'BaseView',
   components:{
-    SearchModalDisplay
+    // SearchModalDisplay
   },
 
   methods:{
@@ -70,11 +73,36 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: #2c3e50; */
-  color: red;
+
 
   position: relative;
 }
+
+#profile {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: black;
+  color: antiquewhite;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logo {
+  color: aqua;
+  /* text-align: center;
+  text-size-adjust: 10px; */
+}
+
+
+/* .logo {
+  display: flex;
+  align-content: flex-start;
+  height: 130px;
+  width: auto;
+} */
 
 .button {
   display: flex;
