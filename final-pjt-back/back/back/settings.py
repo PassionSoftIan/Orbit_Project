@@ -143,8 +143,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Auth 위한 추가 (인식)
 REST_AUTH = {
-    'SESSION_LOGIN' :False
+    'SESSION_LOGIN' :False,
+
 }
+
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 
 SITE_ID = 1
 

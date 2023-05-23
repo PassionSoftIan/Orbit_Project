@@ -12,8 +12,8 @@
     <hr>
     <h3>Reviews</h3>
 
-    <ReadReviewVue v-for="review of Reviews" :key="review.id" :review="review" @reload="reload"/>
-    <CreateReviewVue :movie_id="this.$route.params.moviepk" @created="reload"/>
+    <ReadReviewVue v-for="review of Reviews" :key="review.id" :review="review" :accounts="accounts" @reload="reload"/>
+    <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
     <br>
     <br>
     <br>
@@ -50,11 +50,13 @@ export default {
     return{
       moviedetail:null,
       Reviews:null,
+      accounts:null,
     }
   },
   methods:{
     movieDetailMethod(){
       const params = this.$route.params.moviepk
+      const token = this.$store.state.Token
 
       axios({
         method:'get',
@@ -77,6 +79,22 @@ export default {
       .catch((err)=>{
         console.log(err)
       })
+
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/accounts/user/`,
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+      .then((res)=>{
+        this.accounts = res.data
+        console.log(this.accounts)
+      })
+      .catch((err)=>{
+        console.log(err)
+        console.log(token)
+      })      
     },
     reload(){
       this.movieDetailMethod()

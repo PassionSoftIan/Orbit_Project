@@ -1,0 +1,12 @@
+1. final-pjt-back
+a. final-pjt-back/back 폴더로 접근
+b. pip install -r requirements.txt
+c. python -m venv venv
+d. source venv/Scripts/activate
+e. python manage.py makemigrations
+f. python manage.py migrate
+g. python manage.py loaddata genres.json movies.json still.json youtube.json
+
+2. final-pjt-front
+a. npm install
+b. npm run serve

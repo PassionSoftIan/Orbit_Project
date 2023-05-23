@@ -1,20 +1,25 @@
 <template>
-  <div v-if='!isAuthenticated'>
-    <h1>Log In</h1>
-    <label for="username">username: </label>
-    <input type="text" id="usernamecheck" v-model="username">
-    <br>
-    <br>
-    <label for="password">password: </label>
-    <input type="password" id="password" v-model="password">
-    <button @click="LogIn">로그인</button>
+  <div class="login-container">
+    <!-- <div class="login-background"></div> -->
+    <div v-if='!isAuthenticated'>
+      <h1>Log In</h1>
+      <br>
+      <label for="username">username: </label>
+      <input type="text" id="usernamecheck" @keydown.enter="LogIn" v-model="username">
+      <br>
+      <br>
+      <label for="password">password: </label>
+      <input type="password" id="password" @keydown.enter="LogIn" v-model="password">
+      <br>
+      <br>
+      <button @click="LogIn">로그인</button>
+      <button @click="OnClick">signup</button>
 
-    <button @click="OnClick">signup</button>
-
-    <p>{{$store.state.Token}}</p>
-  </div>
-  <div v-else>
-    로딩중
+      <p>{{$store.state.Token}}</p>
+    </div>
+    <div v-else>
+      로딩중
+    </div>
   </div>
 </template>
 
@@ -51,4 +56,11 @@ export default {
 
 <style>
 
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #f2f2f2;
+}
 </style>

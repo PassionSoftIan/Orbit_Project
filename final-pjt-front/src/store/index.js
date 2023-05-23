@@ -69,11 +69,12 @@ export default new Vuex.Store({
     const username = payload.username
     const password1 = payload.password1
     const password2 = payload.password2
+    const nick_name = payload.nick_name
     axios({
       method: 'post',
       url: `${API_URL}/accounts/signup/`,
       data: {
-        username, password1, password2
+        username, password1, password2, nick_name
       }
     })
       .then(res => {
@@ -83,7 +84,7 @@ export default new Vuex.Store({
       })
       .catch(err => {
         console.log(err)
-        alert("8자 이상 써주세요")
+        alert('가입 조건을 확인해주세요')
       })
   },
   // 로그인 (인식)

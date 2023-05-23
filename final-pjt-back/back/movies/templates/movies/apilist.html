@@ -11,6 +11,7 @@
   <body>
     <hr>
     <p>
+      <h3>목적 : 장르 검색시 장르의 id로 요청을 보내기 위한 용도</h3>
       http://127.0.0.1:8000/api/v1/genre/
       <br>
       요청 타입 : GET
@@ -18,12 +19,14 @@
       params = 없음
       <br>
       반환 값 : 모든 장르와 장르 id를 반환
-      <br>
-      목적 : 장르 검색시 장르의 id로 요청을 보내기 위한 용도
+      
     </p>
     <br>
     <hr>
     <p>
+      <h3>
+        목적 : chatgpt에서 추천받은 영화 중 DB에 있는 영화를 찾는 용도
+      </h3>
       http://127.0.0.1:8000/api/v1/movie/title/
       <br>
       요청 타입 : GET
@@ -31,12 +34,13 @@
       params = { 영화 제목1, 영화 제목2, 영화 제목3, ... }
       <br>
       반환 값 : params에 있는 영화 중 DB에 있는 영화의 정보를 반환
-      <br>
-      목적 : chatgpt에서 추천받은 영화 중 DB에 있는 영화를 찾는 용도
     </p>
     <br>
     <hr>
     <p>
+      <h3>
+        목적 : 앱 시작시 전체 영화의 제목을 저장해서 검색시 해당 검색어를 포함한 영화 자동완성
+      </h3>
       http://127.0.0.1:8000/api/v1/movie/alltitle/
       <br>
       요청 타입 : GET
@@ -44,12 +48,13 @@
       params 없음
       <br>
       반환 값 : 모든 db의 영화의 제목과 id만 반환
-      <br>
-      목적 : 앱 시작시 전체 영화의 제목을 저장해서 검색시 해당 검색어를 포함한 영화 자동완성
     </p>
     <br>
     <hr>
     <p>
+      <h3>
+        목적 : 전체 영화를 조회하는 용도
+      </h3>
       http://127.0.0.1:8000/api/v1/movie/
       <br>
       요청 타입 : GET
@@ -69,12 +74,13 @@
       </asdf>
       <br>
       반환 값 : 데이터를 정렬 조건에 따라 정렬하며 페이지당 10개의 영화를 로드한다.
-      <br>
-      목적 : 전체 영화를 조회하는 용도
     </p>
     <br>
     <hr>
     <p>
+      <h3>
+        목적 : 특정 영화 정보 조회 용도
+      </h3>
       http://127.0.0.1:8000/api/v1/movie/{movie_pk}
       <br>
       요청 타입 : GET
@@ -82,21 +88,23 @@
       params = 없음
       <br>
       반환 값 : 해당 pk에 해당하는 영화의 정보를 반환 함
-      <br>
-      목적 : 특정 영화 정보 조회 용도
     </p>
     <p>
+      <h3>
+        목적 : 자체 평점 조회 용도
+      </h3>
       요청 타입 : PUT
       <br>
       body : { popularity }
       <br>
       반환 값 : pk에 해당하는 영화의 popularity가 수정된 정보를 반환함
-      <br>
-      목적 : 자체 평점 조회 용도
     </p>
     <br>
     <hr>
     <p>
+      <h3>
+        목적 : 영화 detail페이지에서 리뷰를 표시하는 용도
+      </h3>
       http://127.0.0.1:8000/api/v1/review/{movie_pk}
       <br>
       요청 타입 : GET
@@ -104,10 +112,14 @@
       params = 없음
       <br>
       반환 값 : pk에 해당하는 영화의 리뷰 정보를 반환 함
-      <br>
-      목적 : 영화 detail페이지에서 리뷰를 표시하는 용도
     </p>
+    <hr>
     <p>
+      <h3>
+        목적 : 새로운 리뷰를 생성하는 용도
+      </h3>
+      http://127.0.0.1:8000/api/v1/review/{movie_pk}
+      <br>
       요청 타입 : POST
       <br>
       body : {vote, content}
@@ -121,12 +133,13 @@
       </asdf>
       <br>
       반환 값 : 생성된 리뷰 정보
-      <br>
-      목적 : 새로운 리뷰를 생성하는 용도
     </p>
     <br>
     <hr>
     <p>
+      <h3>
+      목적 : 리뷰를 수정하는 용도
+      </h3>
       http://127.0.0.1:8000/api/v1/review/detail/{review_pk}
       <br>
       요청 타입 : PUT
@@ -143,18 +156,86 @@
       <br>
       반환 값 : 수정된 리뷰 정보
       <br>
-      목적 : 리뷰를 수정하는 용도
     </p>
+    <hr>
     <p>
+      <h3>
+        목적 : 리뷰를 삭제하는 용도
+      </h3>
+      http://127.0.0.1:8000/api/v1/review/detail/{review_pk}
+      <br>
       요청 타입 : DELETE
       <br>
       params = 없음
       <br>
       반환값 = 성공여부 반환
+    </p>
+    <p>
+      <h3>
+        목적 : 유저간 팔로우를 생성하는 용도
+      </h3>
+      http://127.0.0.1:8000/myaccounts/following/{user_pk}/
       <br>
-      목적 : 리뷰를 삭제하는 용도
+      요청 타입 : POST
+      <br>
+      header = { Authorization Token }
+      <br>
+      반환 값 : 요청의 성공 여부
+      <br>
+      ps : 토큰에 해당하는 유저가 url의 user_pk의 유저를 팔로우 하는것임
     </p>
     <hr>
+    <p>
+      <h3>
+        목적 : 유저간 팔로우를 생성하는 용도
+      </h3>
+      http://127.0.0.1:8000/myaccounts/following/{user_pk}/
+      <br>
+      요청 타입 : DELETE
+      <br>
+      header = { Authorization Token }
+      <br>
+      반환 값 : 요청의 성공 여부
+    </p>
+    <hr>
+    <p>
+      <h3>
+        목적 : 유저의 프로필을 보는 용도
+      </h3>
+      http://127.0.0.1:8000/myaccounts/profile/{user_pk}/
+      <br>
+      요청 타입 : GET
+      <br>
+      params : 없음
+      <br>
+      반환 값 : 유저의 이름, 닉네임, pk, 작성한 리뷰 정보, 팔로잉, 팔로워, 좋아요한 리뷰
+    </p>
+    <hr>
+    <p>
+      <h3>
+        목적 : 리뷰를 좋아요 하기 위한 용도
+      </h3>
+      http://127.0.0.1:8000/myaccounts/like/{review_pk}/
+      <br>
+      요청 타입 : POST
+      <br>
+      header = { Authorization Token }
+      <br>
+      반환 값 : 요청의 성공 여부
+    </p>
+    <hr>
+    <p>
+      <h3>
+        목적 : 리뷰의 좋아요를 취소 하기 위한 용도
+      </h3>
+      http://127.0.0.1:8000/myaccounts/like/{review_pk}/
+      <br>
+      요청 타입 : DELETE
+      <br>
+      header = { Authorization Token }
+      <br>
+      반환 값 : 요청의 성공 여부
+    </p>
     <br>
     <br>
     <br>

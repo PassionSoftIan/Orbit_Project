@@ -28,7 +28,8 @@ export default {
         }
     },
     props: {
-        movie_id: Number
+        movie_id: String,
+        accounts: Object
     },
     methods:{
         submit(){
@@ -41,7 +42,8 @@ export default {
                 },
                 data:{
                     vote: this.vote,
-                    content:this.content
+                    content:this.content,
+                    username:this.accounts.nick_name
                 }
             })
             .then((res)=>{
