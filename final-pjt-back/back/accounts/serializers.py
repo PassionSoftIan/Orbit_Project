@@ -14,10 +14,10 @@ class UserSerializer(serializers.ModelSerializer):
     myreviews = ReviewSerializer(many = True, read_only=True)
     followings = User_nick_name_Serializer(many = True, read_only=True)
     followers = User_nick_name_Serializer(many = True, read_only=True)
-    like_reveiw = ReviewReadSerializer(many = True, read_only=True)
+    like_reveiws = ReviewReadSerializer(many = True, read_only=True)
     coins = serializers.IntegerField()
 
     class Meta():
         model = User
-        fields = ('username', 'nick_name', 'id', 'myreviews', "followings", "followers", "like_reveiw", "coins")
+        fields = ('username', 'nick_name', 'id', 'myreviews', "followings", "followers", "like_reveiws", "coins")
         # fields = "__all__"

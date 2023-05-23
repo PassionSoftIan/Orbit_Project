@@ -42,7 +42,7 @@ def following(request, user_pk):
 
 
 @api_view(['POST', 'DELETE'])
-def like_review(request, review_pk):
+def like_reviews(request, review_pk):
     review = get_object_or_404(Review, pk = review_pk)
 
     if request.method == "POST":
