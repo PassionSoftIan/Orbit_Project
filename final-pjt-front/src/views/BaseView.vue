@@ -12,10 +12,10 @@
         <router-link to="/community" class="nav-link">Community</router-link>
         <router-link to="/game" class="nav-link">Game</router-link>
       </b-navbar-nav>
-      <b-navbar-nav>
-        <button @click="logOut">Logout</button>
+      <b-navbar-nav class="button">
         <SearchModalDisplay class="nav-link"/>
-        <p class="nav-link">Profile</p>
+        <button class="profile">Profile</button>
+        <button @click="logOut" class="logout">Logout</button>
       </b-navbar-nav>
     </b-collapse>
     </div>
@@ -66,7 +66,7 @@ export default {
 
 <style>
 #BaseView {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'orbit';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -75,5 +75,25 @@ export default {
 
   position: relative;
 }
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile {
+  background-color: transparent;
+  height: 40px;
+  color: antiquewhite;
+
+}
+.logout {
+  background-color: transparent;
+  color: antiquewhite;
+  height: 40px;
+  margin-left: 10px;
+}
+
 
 </style>
