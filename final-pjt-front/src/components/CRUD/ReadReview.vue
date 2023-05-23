@@ -1,10 +1,10 @@
 <template>
   <div>
-    <p>작성자 : {{review.username}}</p>
+    <p>작성자 : {{review.user.nick_name}}</p>
     <div v-if="!isupdate">
         <p>평  점 : {{review.vote}}</p>
         <p v-if="review.content">내용 : {{review.content}}</p>
-        <div v-if="review.user === accounts.pk">
+        <div v-if="review.user.id === accounts.pk">
             <button @click="is_update">수정하기</button>
             <button @click="update_or_delete('delete')">삭제하기</button>
         </div>

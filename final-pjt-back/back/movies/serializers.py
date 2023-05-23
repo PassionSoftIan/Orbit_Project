@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import *
 
+from accounts.models import User
+from django.conf import settings
+
+
 ############################################
 class GenreSerializer(serializers.ModelSerializer):
     class Meta():
@@ -22,13 +26,30 @@ class Still_cutSerializer(serializers.ModelSerializer):
         fields = ('img_url',)
         
 ############################################
+class userSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = User
+        fields = ('id', 'nick_name')
+
+############################################
 class ReviewSerializer(serializers.ModelSerializer):
+    # user = userSerializer(read_only=True)
     class Meta():
         model = Review
         fields = '__all__'
 
         read_only_fields = ('movie', 'user')
 
+
+############################################
+class ReviewReadSerializer(serializers.ModelSerializer):
+    user = userSerializer(read_only=True)
+    class Meta():
+        model = Review
+        fields = '__all__'
+
+        read_only_fields = ('movie', )
+        
 
 ############################################
 class MovieSerializer(serializers.ModelSerializer):

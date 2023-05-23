@@ -1,6 +1,5 @@
 <template>
 <div id="app" >
-
   <div v-if="isAuthenticated">
     <BaseView />
   </div>
@@ -48,5 +47,6 @@ export default {
 }
 #app {
   font-family: 'orbit';
+  color : red;
 }
 </style>

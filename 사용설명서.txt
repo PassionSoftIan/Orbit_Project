@@ -5,7 +5,7 @@ c. python -m venv venv
 d. source venv/Scripts/activate
 e. python manage.py makemigrations
 f. python manage.py migrate
-g. python manage.py loaddata genre.json movies.json still.json youtube.json
+g. python manage.py loaddata genres.json movies.json still.json youtube.json
 
 2. final-pjt-front
 a. npm install

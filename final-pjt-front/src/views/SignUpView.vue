@@ -41,7 +41,7 @@ export default {
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
-      const nick_name = this.nick_name
+      const nick_name = this.nick_name ? this.nick_name : this.username
 
       const payload = {
         username, password1, password2, nick_name

@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from accounts import views as accounts_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('movies.urls')),
     path('game/', include('games.urls')),
+    path('myaccounts/', include('accounts.urls')),
     # Auth 위해 URL 추가(인식)
+    # path('accounts/user/profile/<int:user_pk>', accounts_views.get_user),
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),
 ]
