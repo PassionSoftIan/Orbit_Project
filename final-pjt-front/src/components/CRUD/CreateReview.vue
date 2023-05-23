@@ -28,7 +28,7 @@ export default {
         }
     },
     props: {
-        movie_id: String
+        movie_id: Number
     },
     methods:{
         submit(){

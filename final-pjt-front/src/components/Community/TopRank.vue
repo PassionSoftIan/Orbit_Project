@@ -1,36 +1,57 @@
 <template>
-  <carousel
-    class="info-carousel"
-    :per-page="7"
-    :paginationEnabled="false"
-    :navigation-enabled="true"
-    navigationNextLabel=">"
-    navigationPrevLabel="<">
-    <slide v-for="Movie in this.Movies.data"
-    :key="Movie.id"
-    data-name="MySlideName"
-    @slideclick="handleSlideClick">
-     <router-link :to="{name:'MovieDetail', params:{moviepk:Movie.id}}">
-      <img :src="`https://image.tmdb.org/t/p/original/`+Movie.poster_path" alt="">
-      </router-link>
-    </slide>
-  </carousel>
+<!-- // npm run vue-carousel -->
+<div class="swiper-container">
+<swiper
+    class="swiper"
+    :options="swiperOption"
+>
+    <swiper-slide v-for="Movie in this.Movies.data"
+    :key="Movie.id">
+
+    
+    <router-link :to="{name:'MovieDetail', params:{moviepk:Movie.id}}">
+
+    <img :src="`https://image.tmdb.org/t/p/original/`+Movie.poster_path" alt="">
+
+
+    </router-link>
+
+    </swiper-slide>     
+    <div
+        class="swiper-pagination"
+        slot="pagination"
+        >
+    </div>
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
+</swiper>
+</div>
 
 </template>
 
 
 <script>
-import { Carousel, Slide } from 'vue-carousel';
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
 export default {
   name:"TopRank",
     components: {
-    Carousel,
-    Slide
+      Swiper,
+      SwiperSlide
   },
-  methods:{
-      handleSlideClick (dataset){
-    console.log(dataset.index, dataset.name)
-  }
+  data(){
+    return{
+      swiperOption: { 
+      slidesPerView: 7, 
+      spaceBetween: 10, 
+      loop: true, 
+
+    navigation: { 
+        nextEl: '.swiper-button-next', 
+        prevEl: '.swiper-button-prev' 
+    } 
+  },
+    }
   },
 
 
@@ -43,36 +64,67 @@ export default {
 </script>
 
 <style scoped>
+
+/* .container{width:1200px; max-width:none!important;} */
+
+.swiper-container {
+  overflow: visible;
+  margin: 20px;
+  width:1400px;
+  /* max-width:none!important; */
+  
+}
 img {
-  max-width: 97%;
-  width: 97%;
-  height: 97%;
+  width: 180px;
+  height:260px;
+  object-fit: scale-down;
   overflow: visible;
 }
-  .info-carousel {
-    /* padding: 2px; */
-    margin-block: 10px;
-    display: grid;
-    grid-gap: 5px;
 
-  }
+.swiper-slide {
+  transition: all 300ms ease-in-out;
+  border-radius: 5px;
+  margin-block: 10px;
+  max-block-size: 50%;
+}
+
+.swiper-slide img {
+  border-radius: 5px;
+  max-width: 18rem;
+  cursor: grab;
   
-  .info-carousel img {
-    transition: transform .3s;  
-    
+}
+
+.swiper-slide img:active {
+  cursor: grabbing;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.5);
+  transition: all 30ms ease-in-out;
+  transition-delay: 30ms;
+  z-index: 1;
+}
+
+.swiper-slide:hover img {
+  transition-delay: 300ms;
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width: 599px) {
+  .swiper-slide img {
+    max-width: 14rem;
   }
-  
-  .info-carousel img:hover {
-    transition: transform .3s;
-    -ms-transform: scale(1.4);
-    -webkit-transform: scale(1.4);  
-    transform: scale(1.4);
-    
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
   }
-  
-  .info-carousel img {
+}
+
+@media screen and (max-width: 400px) {
+  .swiper-slide img {
+    max-width: 10.5rem;
     border-radius: 2px;
-    
   }
+}
 </style>
-
