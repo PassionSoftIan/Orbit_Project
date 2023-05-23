@@ -6,14 +6,21 @@ from movies.models import Review
 from .serializers import *
 
 # Create your views here.
-@api_view(['GET'])
+# 기존 view를 바꿔 코인 업데이트 될 수 있게 수정(인식)
+@api_view(['GET', 'PUT'])
 def get_user(request, user_pk):
     user = get_object_or_404(User, pk = user_pk)
-    # reviews = user.review_set.all()
-    # serializer = ReviewSerializer(reviews, many=True)
-    # return Response(serializer.data)
-    serializer = UserSerializer(user)
-    return Response(serializer.data)
+    if request.method == "GET":
+        # reviews = user.review_set.all()
+        # serializer = ReviewSerializer(reviews, many=True)
+        # return Response(serializer.data)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    else:
+        coins = request.data.get('coins')
+        user.coins += int(coins)
+        user.save()
+        return Response({'message': 'Coins updated successfully'})
 
 @api_view(['POST', 'DELETE'])
 def following(request, user_pk):

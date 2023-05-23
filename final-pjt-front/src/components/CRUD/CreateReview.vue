@@ -43,7 +43,6 @@ export default {
                 data:{
                     vote: this.vote,
                     content:this.content,
-                    username:this.accounts.nick_name
                 }
             })
             .then((res)=>{

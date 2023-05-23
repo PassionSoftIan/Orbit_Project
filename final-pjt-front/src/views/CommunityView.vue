@@ -105,10 +105,10 @@ export default {
   },
   created(){
     this.TopRanks('Top100')
-    // this.TopRanks('Revenue')
-    // this.$store.state.GenreStore.forEach(element => {
-    //   this.OnClickGenre(element.id,element.name)
-    // });
+    this.TopRanks('Revenue')
+    this.$store.state.GenreStore.forEach(element => {
+      this.OnClickGenre(element.id,element.name)
+    });
     
   }
 }

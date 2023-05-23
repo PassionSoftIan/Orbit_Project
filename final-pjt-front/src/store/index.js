@@ -17,6 +17,8 @@ export default new Vuex.Store({
     MovieStore:null,
     GenreStore:null,
     Token: null,
+    coins: null,
+    user_pk: null,
   },
   getters: {
   },
@@ -37,6 +39,21 @@ export default new Vuex.Store({
     RESET_STATE(state) {
       state.Token = null
     },
+    // 유저 PK값 저장 (인식)
+    SAVE_PK(state, pk) {
+      state.user_pk = pk
+      console.log(state.user_pk)
+    },
+    // coin 값 저장 (인식)
+    COIN_UP(state, coins) {
+      state.coins = coins
+      console.log(state.coins)
+    },
+    // coin 값 리셋 (인식)
+    COIN_RESET(state) {
+      state.coins = 0
+      console.log(state.coins)
+    }
   },
   actions: {
     MovieToStore(){
@@ -77,10 +94,24 @@ export default new Vuex.Store({
         username, password1, password2, nick_name
       }
     })
-      .then(res => {
-        context.commit('SAVE_TOKEN', res.data.key)
-        console.log("여긴 signUp", res.data.key)
-        location.reload()
+    .then(res => {
+      context.commit('SAVE_TOKEN', res.data.key)
+      return res.data.key
+      })
+      .then(key => {
+        console.log(key)
+        axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: {
+              Authorization: 'Token ' + key
+              }
+            })
+            .then(res => {
+              context.commit('SAVE_PK', res.data.pk)
+              console.log(res.data.pk)
+              location.reload()
+            })
       })
       .catch(err => {
         console.log(err)
@@ -98,9 +129,25 @@ export default new Vuex.Store({
         username, password
       }
     })
-      .then(res => {
-        context.commit('SAVE_TOKEN', res.data.key)
-        location.reload()
+    // 로그인 되어있는 유저 PK값 가져와서 vuex에 저장 (인식)
+    .then(res => {
+      context.commit('SAVE_TOKEN', res.data.key)
+      return res.data.key
+      })
+      .then(key => {
+        console.log(key)
+        axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: {
+              Authorization: 'Token ' + key
+              }
+            })
+            .then(res => {
+              context.commit('SAVE_PK', res.data.pk)
+              console.log(res.data.pk)
+              location.reload()
+            })
       })
       .catch(err => console.log(err))
   },
@@ -109,6 +156,23 @@ export default new Vuex.Store({
     this.commit('RESET_STATE')
     localStorage.removeItem('vuex')
   },
+
+  // 코인 상승 (인식)
+  coinUp(context, payload) {
+    const coins = payload.coins
+    // this.commit('COIN_UP', coins)
+    axios({
+      method: 'put',
+      url: `${API_URL}/myaccounts/profile/${this.state.user_pk}/`,
+      data: {
+        coins
+      }
+    })
+      .then(
+        this.commit('COIN_RESET',)
+      )
+      .catch(err => console.log(err))
+  }
   },
   modules: {
   }
