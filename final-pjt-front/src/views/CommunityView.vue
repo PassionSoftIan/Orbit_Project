@@ -6,8 +6,8 @@
       <div class="location" id="home" 
       v-for='Movies in this.allMovies'
       :key='Movies.name'>
-          <h1 id="home" v-if="Movies.name==='Top100'">Top20</h1>
-          <h1 id="home" v-else>{{Movies.name}}</h1>
+
+          <h1 id="home">{{Movies.name}}</h1>
             <TopRank :Movies="Movies"/>
 
       </div>
@@ -37,19 +37,8 @@ export default {
   methods:{
 
     // 전체 영화 탑10만 보여주도록함
-    TopRanks(value){
-      if(this.CommunityBarValue === value){
-        console.log('stop')
-      }
-      else{
+    TopRanks(){
       let order = 'vote_average'
-      this.CommunityBarValue = value
-      if (value === 'Genre'){
-        return 1
-      }
-      if (value==='Revenue'){
-        order = 'revenue'}
-
       const params = {
         order_by: order,
         page: '0',
@@ -60,29 +49,36 @@ export default {
         params:params
       })
       .then(res =>{
-        const Movies = {'name':value, 'data':res.data}
-        this.allMovies.push(Movies)
-        this.Movies = res.data
+
+        for(let name in res.data){
+          const Movies = {'name':name, 'data':res.data[name]}
+          this.allMovies.push(Movies)
+        }
+
       })
       .catch(err =>{
         console.log(err)
       })
 
     }},
+      created(){
+        this.TopRanks()
+          }
+        }
 
     // random으로 장르에서 가져오기
-    OnClickGenre(){
-      const params = {
-        genre: 12,
-        page: '0',
-      }
-      axios({
-        method:'get',
-        url: 'http://127.0.0.1:8000/api/v1/movie/',
-        params:params
-      })
-      .then(res =>{
-        console.log(res.data)
+    // OnClickGenre(){
+    //   const params = {
+    //     genre: 12,
+    //     page: '0',
+    //   }
+    //   axios({
+    //     method:'get',
+    //     url: 'http://127.0.0.1:8000/api/v1/movie/',
+    //     params:params
+    //   })
+    //   .then(res =>{
+    //     console.log(res.data)
         // const random = _.sampleSize(_.range(0, res.data.length), 10)
         // var randommovie = []
         // random.forEach(element => {
@@ -95,25 +91,20 @@ export default {
 
 
         
-      })
-      .catch(err =>{
-        console.log(err)
-      })
-    }
+  //     })
+  //     .catch(err =>{
+  //       console.log(err)
+  //     })
+  //   }
     
-  },
-  created(){
-    this.TopRanks('Top100')
+  // },
 
-    this.OnClickGenre('1','1')
     // this.TopRanks('Revenue')
     // this.$store.state.GenreStore.forEach(element => {
     //   this.OnClickGenre(element.id,element.name)
     // });
 
     
-  }
-}
 </script>
 
 <style>

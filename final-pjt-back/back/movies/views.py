@@ -36,38 +36,73 @@ def get_movie(request):
     except KeyError:
         sort_key = '-vote_average'
 
+    genre_list = [('12','모험'),
+                    ('14',    '판타지'),
+                    ('16',    '애니메이션'),
+                    ('18',    '드라마'),
+                    ('27',    '공포'),
+                    ('28',    '액션'),
+                    ('35',    '코미디'),
+                    ('36',    '역사'),
+                    ('37',    '서부'),
+                    ('53',    '스릴러'),
+                    ('80',    '범죄'),
+                    ('99',    '다큐멘터리'),
+                    ('878',    'SF'),
+                    ('9648',    '미스터리'),
+                    ('10402',    '음악'),
+                    ('10749',    '로맨스'),
+                    ('10751',    '가족'),
+                    ('10752',    '전쟁'),]
 
-    try:
-        genre_list = [('12','모험'),
-                    ('14',	'판타지'),
-                    ('16',	'애니메이션'),
-                    ('18',	'드라마'),
-                    ('27',	'공포'),
-                    ('28',	'액션'),
-                    ('35',	'코미디'),
-                    ('36',	'역사'),
-                    ('37',	'서부'),
-                    ('53',	'스릴러'),
-                    ('80',	'범죄'),
-                    ('99',	'다큐멘터리'),
-                    ('878',	'SF'),
-                    ('9648',	'미스터리'),
-                    ('10402',	'음악'),
-                    ('10749',	'로맨스'),
-                    ('10751',	'가족'),
-                    ('10752',	'전쟁'),]
-        test = request.GET['genre']
-        for genre,name in genre_list:
-            movies = Movie.objects.filter(genre = genre).filter(revenue__gte = 50).order_by(sort_key)[:100].annotate(genre_annotation=Value(name,output_field=models.CharField(max_length=50)))
-            
+    movies = {}
+    movie = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*20:page*20+20]
+    movies['Top20'] = MovieSerializer(movie, many=True).data
+    movie = Movie.objects.filter(revenue__gte = 10000).order_by('-revenue')[page*20:page*20+20]
+
+    ################################### 잠시 로딩 시간이 길어질 것 같아서 이쪽만 주석 처리함
+
+    # movies['수익'] = MovieSerializer(movie, many=True).data
+    # for id, genre in genre_list:
+    #     movie = Movie.objects.filter(genre = id).filter(revenue__gte = 10000).order_by(sort_key)[:100]
+    #     movies[genre] = MovieSerializer(movie, many=True).data
+    # serializers = MovieSerializer(movies, many=True)
+
+    return Response(movies)
+#############################################################################################################
+    # try:
+    #     genre_list = [('12','모험'),
+    #                 ('14',	'판타지'),
+    #                 ('16',	'애니메이션'),
+    #                 ('18',	'드라마'),
+    #                 ('27',	'공포'),
+    #                 ('28',	'액션'),
+    #                 ('35',	'코미디'),
+    #                 ('36',	'역사'),
+    #                 ('37',	'서부'),
+    #                 ('53',	'스릴러'),
+    #                 ('80',	'범죄'),
+    #                 ('99',	'다큐멘터리'),
+    #                 ('878',	'SF'),
+    #                 ('9648',	'미스터리'),
+    #                 ('10402',	'음악'),
+    #                 ('10749',	'로맨스'),
+    #                 ('10751',	'가족'),
+    #                 ('10752',	'전쟁'),]
+    #     test = request.GET['genre']
+    #     movies = {}
+    #     for genre,name in genre_list:
+    #         movie = Movie.objects.filter(genre = genre).filter(revenue__gte = 50).order_by(sort_key)[:100].annotate(genre_annotation=Value(name,output_field=models.CharField(max_length=50)))
+    #         movies[name] = MovieSerializer(movie,many=True).data
+    #     return Response(movies)
         
         
-    except KeyError:
-        movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*20:page*20+20]
-    # movies = Movie.objects.all()[page*10:page*10+10]
-    serializers = MovieSerializer(movies, many=True)
+    # except KeyError:
+    #     movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*20:page*20+20]
+    # # movies = Movie.objects.all()[page*10:page*10+10]
+    # serializers = MovieSerializer(movies, many=True)
     
-    return Response(serializers.data)
+    # return Response(serializers.data)
 
 
 ######################################################################
@@ -134,4 +169,20 @@ def genre_list(request):
 def api_list(request):
     return render(request, 'movies/apilist.html')
     
-
+######################################################################
+# youtube, stil api(세울)
+@api_view(['GET'])
+def youtube(request, movie_pk):
+    youtube = youtube_key.objects.filter(movie_id=movie_pk)
+    still = stillcut.objects.filter(movie_id=movie_pk)
+    if youtube.exists() or still.exists():
+        youtubeNstill ={}
+        if youtube.exists():
+            serializer = Youtube_keySerializer(youtube, many=True)
+            youtubeNstill['youtube'] = serializer.data
+        if still.exists():
+            serializer = Still_cutSerializer(still, many=True)
+            youtubeNstill['still'] = serializer.data
+        return Response(youtubeNstill, status=200)
+    else:
+        return Response(status=404)
