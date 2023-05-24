@@ -44,7 +44,9 @@ export default {
       swiperOption: { 
       slidesPerView: 7, 
       spaceBetween: 10, 
-      loop: true, 
+      loop: true,
+      breakpoints : true,
+      // autoHeight:true,
 
     navigation: { 
         nextEl: '.swiper-button-next', 
@@ -75,7 +77,7 @@ export default {
   
 }
 img {
-  width: 180px;
+  width: 100%;
   height:260px;
   object-fit: scale-down;
   overflow: visible;
