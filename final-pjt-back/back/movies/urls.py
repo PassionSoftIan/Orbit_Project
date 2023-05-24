@@ -9,7 +9,8 @@ urlpatterns = [
     path('movie/<int:movie_pk>/', views.get_movie_detail),
     path('review/<int:movie_pk>/', views.review),
     path('review/detail/<int:review_pk>/', views.review_detail),
-    path('api_list/', views.api_list),
     path('youtubeNstill/<int:movie_pk>/', views.youtube),
-
+    path('comment/<int:review_pk>/', views.comment),
+    path('comment/detail/<int:comment_pk>/', views.comment_detail),
+    path('api_list/', views.api_list)
 ]

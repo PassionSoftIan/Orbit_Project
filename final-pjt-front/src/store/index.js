@@ -9,17 +9,26 @@ Vue.use(Vuex)
 const API_URL = 'http://127.0.0.1:8000'
 
 export default new Vuex.Store({
-  // persistedstate plugin(인식)
+  // persistedstate plugin로 로컬 스토리지에 vuex 상태 저장(인식)
   plugins: [
     createPersistedState(),
   ],
   state: {
     MovieStore:null,
     GenreStore:null,
+    // user 값들 저장(인식)
     Token: null,
     coins: null,
     user_pk: null,
+    username_information: null,
+    nick_information: null,
+    myreviews_information: null,
+    followings_information: null,
+    followers_information: null,
+    like_reviews_information: null,
+
   },
+  
   getters: {
   },
   mutations: {
@@ -38,22 +47,24 @@ export default new Vuex.Store({
     // Logout (인식)
     RESET_STATE(state) {
       state.Token = null
+      state.coins = null
+      location.reload()
     },
     // 유저 PK값 저장 (인식)
     SAVE_PK(state, pk) {
       state.user_pk = pk
       console.log(state.user_pk)
     },
-    // coin 값 저장 (인식)
-    COIN_UP(state, coins) {
-      state.coins = coins
+    // coin 값, information 저장 (인식)
+    INFORMATION_UPDATE(state, information) {
+      state.coins = information.coins
+      state.nick_information = information.nick_name
+      state.myreviews_information = information.myreviews
+      state.followings_information = information.followings
+      state.followers_information = information.followers
+      state.like_reviews_information = information.like_reviews
       console.log(state.coins)
     },
-    // coin 값 리셋 (인식)
-    COIN_RESET(state) {
-      state.coins = 0
-      console.log(state.coins)
-    }
   },
   actions: {
     MovieToStore(){
@@ -81,12 +92,13 @@ export default new Vuex.Store({
       console.log(err)
     })
   },
-  // 회원가입 (인식)
+  // 회원가입 + 회원가입 이후 pk를 vuex에 저장(인식)
   signUp(context, payload) {
     const username = payload.username
     const password1 = payload.password1
     const password2 = payload.password2
     const nick_name = payload.nick_name
+    // 회원가입 이후 vuex에 토큰 저장(인식)
     axios({
       method: 'post',
       url: `${API_URL}/accounts/signup/`,
@@ -98,6 +110,7 @@ export default new Vuex.Store({
       context.commit('SAVE_TOKEN', res.data.key)
       return res.data.key
       })
+      // 회원가입 이후 vuex에 유저 pk 저장(인식)
       .then(key => {
         console.log(key)
         axios({
@@ -107,11 +120,20 @@ export default new Vuex.Store({
               Authorization: 'Token ' + key
               }
             })
-            .then(res => {
+            .then(async res => {
               context.commit('SAVE_PK', res.data.pk)
-              console.log(res.data.pk)
-              location.reload()
+              // 회원가입 이후 vuex에 유저의 information 저장(인식)
+              return axios({
+                method: 'get',
+                url: `${API_URL}/myaccounts/profile/${this.state.user_pk}/`,                
+              })
+              .then(res => {
+                this.commit('INFORMATION_UPDATE', res.data)
+                location.reload()
+                console.log(res.data.pk)
+              })
             })
+            .catch(err => console.log(err))
       })
       .catch(err => {
         console.log(err)
@@ -130,26 +152,30 @@ export default new Vuex.Store({
       }
     })
     // 로그인 되어있는 유저 PK값 가져와서 vuex에 저장 (인식)
-    .then(res => {
+    .then(async res => {
       context.commit('SAVE_TOKEN', res.data.key)
-      return res.data.key
-      })
-      .then(key => {
-        console.log(key)
-        axios({
+      return axios({
           method: 'get',
           url: `${API_URL}/accounts/user/`,
           headers: {
-              Authorization: 'Token ' + key
+              Authorization: 'Token ' + res.data.key
               }
             })
-            .then(res => {
+          })
+            .then(async res => {
               context.commit('SAVE_PK', res.data.pk)
-              console.log(res.data.pk)
-              location.reload()
+              // 로그인 이후 vuex에 유저의 information 저장(인식)
+              return axios({
+                method: 'get',
+                url: `${API_URL}/myaccounts/profile/${this.state.user_pk}/`,                
+              })
+              .then(res => {
+                this.commit('INFORMATION_UPDATE', res.data)
+                location.reload()
+                console.log(res.data.pk)
+              })
             })
-      })
-      .catch(err => console.log(err))
+            .catch(err => console.log(err))
   },
   // 로그아웃 (인식)
   logOut() {
@@ -157,21 +183,28 @@ export default new Vuex.Store({
     localStorage.removeItem('vuex')
   },
 
-  // 코인 상승 (인식)
-  coinUp(context, payload) {
+  // 코인 값 바꾸기 (인식)
+  async coinChange(context, payload) {
     const coins = payload.coins
-    // this.commit('COIN_UP', coins)
-    axios({
-      method: 'put',
-      url: `${API_URL}/myaccounts/profile/${this.state.user_pk}/`,
-      data: {
-        coins
-      }
-    })
-      .then(
-        this.commit('COIN_RESET',)
-      )
-      .catch(err => console.log(err))
+    const user_pk = this.state.user_pk
+
+    try {
+      await axios({
+        method: 'put',
+        url: `${API_URL}/myaccounts/profile/${user_pk}/`,
+        data: {
+          coins
+        }
+      })
+      // 코인 값 바꾸고 vuex에도 저장 (인식)
+      const res = await axios({
+        method: 'get',
+        url: `${API_URL}/myaccounts/profile/${user_pk}/`,
+      })
+      this.commit('INFORMATION_UPDATE', res.data)
+    } catch (err) {
+      return console.log(err)
+    }
   }
   },
   modules: {

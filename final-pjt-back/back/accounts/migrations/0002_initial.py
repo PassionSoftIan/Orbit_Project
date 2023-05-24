@@ -8,9 +8,10 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('movies', '0001_initial'),
         ('accounts', '0001_initial'),
+        ('movies', '0001_initial'),
         ('auth', '0012_alter_user_first_name_max_length'),
+        ('movies', '0001_initial'),
     ]
 
     operations = [

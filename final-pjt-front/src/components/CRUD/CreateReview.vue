@@ -2,7 +2,7 @@
   <div>
     <p>CreateReview page</p>
 
-    <input type="text" v-model="content">
+    <input type="text" v-model="content" @keydown.enter="submit">
     <input type="range" name="vote" min="0.5" max="5" step="0.5" v-model="vote">
     <span>{{vote}}</span>
     <button @click="submit">submit</button>

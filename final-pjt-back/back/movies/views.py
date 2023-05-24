@@ -105,6 +105,7 @@ def get_movie(request):
     # return Response(serializers.data)
 
 
+
 ######################################################################
 @api_view(['GET', 'PUT'])
 def get_movie_detail(request, movie_pk):
@@ -163,6 +164,43 @@ def genre_list(request):
 
     return Response(serializer.data)
 
+
+######################################################################
+@api_view(['GET', 'POST'])
+def comment(request, review_pk):
+    review = get_object_or_404(Review, pk = review_pk)
+
+    if request.method == "GET":
+        comments = review.comment_set.all()
+        serializer = CommentReadSerializer(comments, many=True)
+        return Response(serializer.data)
+    
+    if request.method == "POST":
+        print(request.data)
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            print("2")
+            serializer.save(review=review, user=request.user)
+            print("3")
+            return Response(serializer.data, status=201)
+
+
+######################################################################
+@api_view(['PUT', 'DELETE'])
+def comment_detail(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if comment.user != request.user:
+        return Response({"message":"User isn't authenticated"}, status=401)
+
+    if request.method == "PUT":
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response(serializer.data)
+    
+    if request.method == "DELETE":
+        comment.delete()
+        return Response({"message":"clear delete"}, status=204)
 
 
 ######################################################################
