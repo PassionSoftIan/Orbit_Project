@@ -25,7 +25,7 @@
       <div v-for="review in myreviews" :key="review.id">
         <!-- {{ review }} -->
         <br>
-        <a :href="URL+review.movie">
+        <a :href="URL_movie+review.movie">
           {{review.movie_title}}
         </a>
         <br>
@@ -42,7 +42,9 @@
     <hr>
     <div>
       <div v-for="follower in followers" :key="follower.id">
-        {{ follower }}
+        <a :href="URL_others+follower.id">
+          {{ follower.nick_name }}
+        </a>
       </div>
     </div>
     <br>
@@ -53,7 +55,9 @@
     <hr>
     <div>
       <div v-for="following in followings" :key="following.id">
-        {{ following }}
+        <a :href="URL_others+following.id">
+          {{ following.nick_name }}
+        </a>
       </div>
     </div>
     <br>
@@ -65,7 +69,7 @@
     <div>
       <div v-for="like_review in like_reviews" :key="like_review.id">
         <br>
-        <a :href="URL+like_reviews[0].movie">
+        <a :href="URL_movie+like_reviews[0].movie">
           {{ like_reviews[0].movie_title }}
         </a>
         <br>
@@ -89,20 +93,22 @@
     </div> -->
 
 
-    <button @click="coinUp" class="button" >coin up</button>
+    <button @click="coinUp">coin up</button>
     <button @click="coinDown" >coin down</button>
     <p>{{ coins }}</p>
   </div>
 </template>
 
 <script>
-const URL = 'http://localhost:8080/MovieDetail/'
+const URL_movie = 'http://localhost:8080/MovieDetail/'
+const URL_others = 'http://localhost:8080/others/'
 
 export default {
   name: 'ProfileView',
   data(){
     return {
-      URL,
+      URL_movie,
+      URL_others,
     }
   },
   computed: {
@@ -131,7 +137,6 @@ export default {
     // movie 정보(인식)
     title() {
       return this.$store.state.MovieStore
-      // return '하하'
     },
   },
   methods: {
@@ -163,7 +168,7 @@ export default {
   color: aquamarine;
 }
 
-.button {
+/* .button {
   background-color:rgb(211, 63, 174)
-}
+} */
 </style>

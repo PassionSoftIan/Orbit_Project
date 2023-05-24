@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>Orbit AI</h1>
           <img
         src="../assets/loading.gif"
         alt="loading"

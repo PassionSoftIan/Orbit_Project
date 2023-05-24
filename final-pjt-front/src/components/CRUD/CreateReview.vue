@@ -50,9 +50,9 @@ export default {
                 this.content = ""
                 this.vote = 0
                 this.$emit("created")
-                return this.$store.dispatch('userChange')
-
+            return this.$store.dispatch('userChange')
             })
+            
             .catch((err)=>{
                 console.log(err)
                 this.content = ""
