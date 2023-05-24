@@ -16,7 +16,7 @@
         <router-link to="/game" class="nav-link">Game</router-link>
       </b-navbar-nav>
       <b-navbar-nav class="button">
-        <!-- <SearchModalDisplay class="nav-link"/> -->
+        <SearchModalDisplay class="nav-link"/>
         <router-link to="/profile" class="nav-link" id="profile">Profile</router-link>
         <button @click="logOut" class="logout">Logout</button>
       </b-navbar-nav>
@@ -29,12 +29,12 @@
 
 <script>
 
-// import SearchModalDisplay from '@/components/SearchBar/SearchModalDisplay.vue'
+import SearchModalDisplay from '@/components/SearchBar/SearchModalDisplay.vue'
 
 export default {
   name:'BaseView',
   components:{
-    // SearchModalDisplay
+    SearchModalDisplay
   },
 
   methods:{
