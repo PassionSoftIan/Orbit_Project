@@ -1,120 +1,206 @@
-<div class="container">
-  <p>Popular on Netflix</p>
-<div class="swiper-container">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/ba7hnMx1HAze0QSJSNfsTBycS8U.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/c3XBgBLzB9Sh7k7ewXY2QpfH47L.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/b5rOkbQ0jKYvBqBf3bwJ6nXBOtx.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/aNsrgElf0fiKBSR8cWWEL6XUTte.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/dueiWzWc81UAgnbDAyH4Gjqnh4n.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/hwNRc9ZWrakGdql22srY7DqtmRQ.jpg" alt="">
-    </div>
-    
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/trAOGwksvgHYNpbK4GewbjYQ1pi.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/zAIippNnm6o0gYEtjapbjQSxP8G.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/tNyJxHK3m7NAAKNYITLJ5oxS0YR.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/hMh1mR2kNl8kHjpIuPh4TICTwjo.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/c4EkF5JAZ83bUqNErhuSd9xw6uJ.jpg" alt="">
-    </div>
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/w500/79DgItjsyH5tpA3mC2xv5gU2zlZ.jpg" alt="">
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>TMDb Movie Search</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="results">
+      <div id="movie">
+        <div class="movie-details-container">
+          <div class="column column-md"><img src="https://image.tmdb.org/t/p/w500/2i0OOjvi7CqNQA6ZtYJtL65P9oZ.jpg" id="poster">
+          </div>
+          <div class="column column-md">
+            <h1 id="title">My Neighbor Totoro<span id="date"> (1988)</span></h1>
+            <div class="row">
+              <span class="badge"><span id="status">Released</span>
+              </span>
+            </div>
+            <div class="row">
+              1 hour 26 minutes | Fantasy, Animation, Family | 16 April 1988
+            </div>
+            <h3 id="tagline">These strange creatures still exist in Japan. Probably.</h3>
+            <div id="overview">
+              <p id="synopsis">Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the
+                older sister seeks help from the spirits to find her.</p>
+            </div>
+            <div class="row">
+              <h2>Company Credits</h2>
+              <div id="companies">Studio Ghibli, Nibariki, Tokuma Japan Communications Co. Ltd.</div>
+            </div>
+            <div class="row">
+              <h2>Countries</h2>
+              <div id="countries">Japan</div>
+            </div>
+            <div class="row">
+              <h2>Box Office</h2>
+              <div id="budget"><strong>Budget:</strong> $0</div>
+              <div id="revenue"><strong>Revenue:</strong> $0</div>
+            </div>
+            <div class="row">
+              <div class="column column-md">
+                <div class="ratings">
+                  <h2>Rating</h2>
+                  <span id="rating">8/10</span>
+                </div>
+              </div>
+              <div class="column column-md">
+                <h2>Runtime</h2>
+                <div>
+                  <div id="runtime">86 minutes</div>
+                </div>
+              </div>
+              <div class="column column-lg">
+                <h2>Related</h2>
+                <ul id="related">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  
-  <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
-</div>
+</body>
 
 <style>
-:root {
-  --swiper-theme-color: #e5e5e5 !important;
+  * {
+  box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+html {
+  width: 100%;
+  height: 100%;
+}
 
 body {
-  background: #141414;
-  font-family: 'Roboto', sans-serif;
-  color: #e5e5e5;
-  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: white;
 }
 
-.container {
-  margin-top: 2rem;
+#container {
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 100%), url("https://image.tmdb.org/t/p/w1280/56El17WVXXqyZCZvSC8Nyc8yPgx.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow: auto;
 }
 
-.swiper-container {
-  overflow: visible;
+input {
+  background: none;
+  border: none;
+  border-bottom: .05rem solid white;
+  transition: border-bottom .2s ease-in;
+  color: white;
+  font-size: 1.5rem;
 }
 
+input:focus {
+  outline: none;
+  border-bottom: .15rem solid white;
+}
+
+#searchButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: .5rem 2rem;
+  border-radius: .5rem;
+}
+
+#searchButton:focus {
+  outline: none;
+}
+
+#searchIcon {
+  width: 2rem;
+  position: 10px 10px;
+}
+
+#searchIcon path {
+  transform: scale(0.04);
+}
+
+#results {
+      background: rgba(0,0,0,.8);
+}
+
+#movie {
+  text-align: left;
+  margin-top: 1em;
+}
+
+h1 {
+  color: white;
+}
+
+h2, h3 {
+  color: #00ce71;
+  font-weight: 200;
+}
 
 p {
-  font-size: 1.7rem;
-  font-weight: 500;
+  color: white;
 }
-.swiper-slide {
-  transition: all 300ms ease-in-out;
-  border-radius: 5px;
+.movie-details-container{
+  overflow:auto;
 }
 
-.swiper-slide img {
-  border-radius: 5px;
-  max-width: 18rem;
-  cursor: grab;
+.row {
+    overflow: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.column {
+  float: left;
+}
+.column-md {
+  width: 50%;
+}
+.column-lg {
+  width: 100%;
+}
+.badge {
+  background-color: #4b017b;
+  padding:.3rem 1rem;
+  border-radius: 4px;
+}
+#date {
+  font-size:1.5rem;
+  font-weight: 200;
+}
+#poster {
+  padding-right: 10px;
+  max-width: 100%;
 }
 
-.swiper-slide img:active {
-  cursor: grabbing;
+#tagline {
+  color: #00ce71;
+}
+#genres, #runtime,#rating,#companies {
+  color: white;
 }
 
-.swiper-slide:hover {
-  transform: scale(1.5);
-  transition: all 300ms ease-in-out;
-  transition-delay: 300ms;
-  z-index: 1;
+#related {
+  color: white;
+  padding: 0;
 }
 
-.swiper-slide:hover img {
-  transition-delay: 300ms;
-  box-shadow: 0 0 5px 1px rgba(0,0,0,0.5);
-}
-
-@media screen and (max-width: 599px) {
-  .swiper-slide img {
-    max-width: 14rem;
-  }
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .swiper-slide img {
-    max-width: 10.5rem;
-    border-radius: 2px;
-  }
+#related li {
+  list-style: none;
+  cursor: pointer;
 }
 </style>
+
+</html>

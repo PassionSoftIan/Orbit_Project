@@ -59,10 +59,17 @@ class MovieSerializer(serializers.ModelSerializer):
     genre = GenreSerializer(many=True, read_only=True)
     youtube_key_set = Youtube_keySerializer(many=True, read_only=True)
     stillcut_set = Still_cutSerializer(many=True, read_only=True)
+    # genre_annotation = GenreSerializer(many=True, read_only=True)
+    
 
     class Meta():
         model = Movie
         fields = '__all__'
+
+    # def get_genre(self,obj):
+    #     if obj.genre_annotation:
+    #         return obj.genre_annotation
+    #     return
         
 
 ############################################

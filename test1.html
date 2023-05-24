@@ -1,0 +1,195 @@
+<main>
+  <div class="info-left">
+    <div class="movie-img-container">
+      <img class="movie-img" src="https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="moonlight" />
+      <div class="release-date">
+        <h2>30</h2>
+        <div class="line"></div>
+        <p>nov 2017</p>
+      </div>
+      <div class="btn-play">
+        <button>
+          <i class="fas fa-play"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="info-right">
+    <div class="movie-info">
+      <h1>moonlight</h1>
+      <p>Same-sex / American / English / 2016 / 1h59m</p>
+    </div>
+    <div class="movie-extra">
+      <p class="rating">★ ★ ★ ★ ☆ 8.0</p>
+      <p class="channels">
+        <span>hulu</span>
+        <span>youtube</span>
+        <span>BBC</span>
+      </p>
+    </div>
+    <div class="cast">
+      <h4>the cast</h4>
+      <div class="cast-img">
+        <img src="https://m.media-amazon.com/images/M/MV5BNzYwMTQ1ODY1MV5BMl5BanBnXkFtZTgwMTU5NDc5OTE@._V1_UY44_CR17,0,32,44_AL_.jpg" alt="cast" />
+        <img src="https://m.media-amazon.com/images/M/MV5BNzYwMTQ1ODY1MV5BMl5BanBnXkFtZTgwMTU5NDc5OTE@._V1_UY44_CR17,0,32,44_AL_.jpg" alt="cast" />
+        <img src="https://m.media-amazon.com/images/M/MV5BNzYwMTQ1ODY1MV5BMl5BanBnXkFtZTgwMTU5NDc5OTE@._V1_UY44_CR17,0,32,44_AL_.jpg" alt="cast" />
+        <img src="https://m.media-amazon.com/images/M/MV5BNzYwMTQ1ODY1MV5BMl5BanBnXkFtZTgwMTU5NDc5OTE@._V1_UY44_CR17,0,32,44_AL_.jpg" alt="cast" />
+      </div>
+    </div>
+    <div class="synopsis">
+      <h4>synopsis</h4>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis
+        itaque sequi nemo neque, quibusdam, repellat libero deleniti vel
+        exercitationem obcaecati alias doloremque quisquam similique. Ad
+        libero doloremque temporibus alias unde tempore at voluptates atque
+        ratione minus vitae odio suscipit, ut quaerat omnis nulla nemo illum
+        praesentium ducimus tenetur quas non!
+      </p>
+    </div>
+    <div class="gallery">
+      <h4>video / picture</h4>
+      <div class="gallery-content">
+        <img src="https://m.media-amazon.com/images/M/MV5BYzkyNGViZDItYzFkMy00OGM0LTg3NzktZGVkZjM2Mzk1OGEzXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg" alt="img-1" />
+        <img src="https://m.media-amazon.com/images/M/MV5BMzg2OTY3MjE3OF5BMl5BanBnXkFtZTgwNTkxMDU0MDI@._V1_SX1777_CR0,0,1777,745_AL_.jpg" alt="img-2" />
+        <img src="https://m.media-amazon.com/images/M/MV5BNTkxOGIwYzUtNzc0ZS00MTBkLWFkODItYzEzNGRkN2E3MTAxXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg" alt="img-3" />
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"); */
+ html {
+	 font-size: 100%;
+}
+ body {
+	 font-family: "Lato", sans-serif;
+}
+ h4 {
+	 margin-bottom: 1em;
+	 font-size: 0.75rem;
+	 font-weight: 400;
+	 text-transform: uppercase;
+}
+ main {
+	 display: grid;
+	 max-width: 992px;
+	 width: 80%;
+	 margin: 4em auto;
+	 gap: 4em;
+}
+ @media (min-width: 992px) {
+	 main {
+		 grid-template-columns: repeat(2, 1fr);
+	}
+}
+ .movie-img-container {
+	 position: relative;
+	 max-width: 450px;
+	 margin: 0 auto;
+}
+ .movie-img {
+	 display: block;
+	 width: 100%;
+}
+ .release-date {
+	 position: absolute;
+	 top: 1.5rem;
+	 left: -1.5rem;
+	 display: grid;
+	 place-items: center;
+	 padding: 0.5em 0.8em;
+	 color: #fff;
+	 background-color: #3686ff;
+}
+ .release-date h2 {
+	 font-size: 2.3rem;
+	 font-weight: 400;
+}
+ .release-date .line {
+	 width: 25px;
+	 height: 2px;
+	 margin: 0.2em 0 0.5em;
+	 background-color: #fff;
+}
+ .release-date p {
+	 font-size: 0.75rem;
+	 text-transform: uppercase;
+}
+ .btn-play {
+	 position: absolute;
+	 bottom: 1.5rem;
+	 right: -1.5rem;
+}
+ .btn-play button {
+	 padding: 0.7em;
+	 border: transparent;
+	 color: #fff;
+	 background-color: #3686ff;
+	 font-size: 1.2rem;
+	 transition: all 0.2s linear;
+}
+ .btn-play button:hover {
+	 background-color: #fdba2e;
+}
+ .movie-info h1 {
+	 font-size: 1.5rem;
+	 font-weight: 500;
+	 text-transform: uppercase;
+}
+ .movie-info p {
+	 color: #888;
+	 font-size: 0.7rem;
+}
+ .movie-extra .rating {
+	 color: #fdba2e;
+}
+ .movie-extra .channels {
+	 color: #888;
+	 font-size: 0.7rem;
+	 text-transform: capitalize;
+}
+ .cast {
+	 margin-top: 1.5em;
+}
+ .cast img {
+	 width: 35px;
+	 height: 35px;
+	 border-radius: 50%;
+	 margin-right: 0.5em;
+	 object-fit: cover;
+}
+ .synopsis {
+	 margin-top: 1.5em;
+}
+ .synopsis p {
+	 color: #888;
+	 font-size: 0.7rem;
+	 line-height: 1.4;
+}
+ .gallery {
+	 margin-top: 1.5em;
+}
+ .gallery-content {
+	 display: grid;
+	 grid-auto-rows: 100px;
+	 gap: 0.5em;
+}
+ .gallery img {
+	 width: 100%;
+	 height: 100%;
+	 object-fit: cover;
+}
+ .gallery img:nth-child(1) {
+	 grid-column: 0.5;
+}
+ .gallery img:nth-child(2) {
+	 grid-column: 0.6666666667;
+}
+ .gallery img:nth-child(3) {
+	 grid-column: 0.3333333333;
+	 grid-row: 0.6666666667;
+}
+ 
+</style>
