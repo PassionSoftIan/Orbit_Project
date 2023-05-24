@@ -131,9 +131,16 @@ def review(request, movie_pk):
         return Response(serializer.data)
     
     if request.method == "POST":
-        print(request.data)
         serializer = ReviewSerializer(data=request.data)
+        print("당연히 여긴 오고")
         if serializer.is_valid(raise_exception=True):
+            vote_serializer = MoviepopularitySerializer(movie)
+            save_vote = vote_serializer.data['ours_vote'] + request.data['vote']
+            save_vote_count = vote_serializer.data['vote_count'] + 1
+            vote_serializer = MoviepopularitySerializer(movie, data={'ours_vote': save_vote, 'vote_count': save_vote_count})
+            if vote_serializer.is_valid(raise_exception=True):
+                vote_serializer.save()
+
             serializer.save(movie=movie, user=request.user)
             return Response(serializer.data, status=201)
         
@@ -145,13 +152,36 @@ def review_detail(request, review_pk):
     if review.user != request.user:
         return Response({"message":"User isn't authenticated"}, status=401)
 
+
+
     if request.method == "PUT":
+        serializer = ReviewSerializer(review)
+        movie = Movie.objects.get(pk = serializer.data['movie'])
+        before_vote = serializer.data['vote']
+        vote_serializer = MoviepopularitySerializer(movie)
+        save_vote = vote_serializer.data['ours_vote'] + float(request.data['vote']) - before_vote
+        save_vote_count = vote_serializer.data['vote_count']
+        vote_serializer = MoviepopularitySerializer(movie, data={'ours_vote': save_vote, 'vote_count': save_vote_count})
+        if vote_serializer.is_valid(raise_exception=True):
+            vote_serializer.save()
+
         serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+
+
         return Response(serializer.data)
     
     if request.method == "DELETE":
+        serializer = ReviewSerializer(review)
+        movie = Movie.objects.get(pk = serializer.data['movie'])
+        before_vote = serializer.data['vote']
+        vote_serializer = MoviepopularitySerializer(movie)
+        save_vote = vote_serializer.data['ours_vote'] - before_vote
+        save_vote_count = vote_serializer.data['vote_count'] - 1
+        vote_serializer = MoviepopularitySerializer(movie, data={'ours_vote': save_vote, 'vote_count': save_vote_count})
+        if vote_serializer.is_valid(raise_exception=True):
+            vote_serializer.save()
         review.delete()
         return Response({"message":"clear delete"}, status=204)
 

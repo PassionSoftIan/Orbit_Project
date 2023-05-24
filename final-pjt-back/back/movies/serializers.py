@@ -78,7 +78,7 @@ class MovieSerializer(serializers.ModelSerializer):
 class MoviepopularitySerializer(serializers.ModelSerializer):
     class Meta():
         model = Movie
-        fields = ('popularity',)
+        fields = ('ours_vote', 'vote_count')
 
 
 ############################################
