@@ -20,6 +20,7 @@
     youtube
     <div v-for="key in this.youtubeKey"
     :key="key.key">
+    {{key.key}}
     <iframe 
     width="560"
     height="315"

@@ -6,5 +6,5 @@ from movies.models import Review
 class User(AbstractUser):
     nick_name = models.CharField(blank=True, max_length=10)
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    like_reveiws = models.ManyToManyField(Review, related_name='liked_user')
+    like_reviews = models.ManyToManyField(Review, related_name='liked_user')
     coins = models.IntegerField(default = 0)

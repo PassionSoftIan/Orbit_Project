@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="profile">
+    <!-- 해당 페이지 인식에게 문의 -->
     <br>
     <br>
     <br>
@@ -22,7 +23,15 @@
     <hr>
     <div>
       <div v-for="review in myreviews" :key="review.id">
-        {{ review }}
+        <!-- {{ review }} -->
+        <br>
+        <a :href="URL+review.movie">
+          {{review.movie_title}}
+        </a>
+        <br>
+        내용: {{ review.content }}
+        <br>
+        별점: {{ review.vote }}
       </div>
     </div>
     <br>
@@ -55,7 +64,16 @@
     <hr>
     <div>
       <div v-for="like_review in like_reviews" :key="like_review.id">
-        {{ like_reviews }}
+        <br>
+        <a :href="URL+like_reviews[0].movie">
+          {{ like_reviews[0].movie_title }}
+        </a>
+        <br>
+        {{ like_reviews[0].user.nick_name }}
+        <br>
+        {{ like_reviews[0].content }}
+        <br>
+        {{ like_reviews[0].created_at }}
       </div>
     </div>
     <br>
@@ -71,20 +89,24 @@
     </div> -->
 
 
-    <button @click="coinUp" >coin up</button>
+    <button @click="coinUp" class="button" >coin up</button>
     <button @click="coinDown" >coin down</button>
     <p>{{ coins }}</p>
   </div>
 </template>
 
 <script>
+const URL = 'http://localhost:8080/MovieDetail/'
+
 export default {
   name: 'ProfileView',
   data(){
     return {
+      URL,
     }
   },
   computed: {
+    // myaccounts 정보(인식)
     coins() {
       return this.$store.state.coins
     },
@@ -105,6 +127,11 @@ export default {
     },
     like_reviews() {
       return this.$store.state.like_reviews_information
+    },
+    // movie 정보(인식)
+    title() {
+      return this.$store.state.MovieStore
+      // return '하하'
     },
   },
   methods: {
@@ -132,4 +159,11 @@ export default {
 </script>
 
 <style>
+.profile {
+  color: aquamarine;
+}
+
+.button {
+  background-color:rgb(211, 63, 174)
+}
 </style>

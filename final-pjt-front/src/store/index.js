@@ -59,11 +59,14 @@ export default new Vuex.Store({
     INFORMATION_UPDATE(state, information) {
       state.coins = information.coins
       state.nick_information = information.nick_name
+      state.username_information = information.username
       state.myreviews_information = information.myreviews
       state.followings_information = information.followings
       state.followers_information = information.followers
       state.like_reviews_information = information.like_reviews
-      console.log(state.coins)
+      // console.log(state.like_reviews_information)
+      // console.log(state.coins)
+      console.log(information)
     },
   },
   actions: {
@@ -205,7 +208,20 @@ export default new Vuex.Store({
     } catch (err) {
       return console.log(err)
     }
-  }
+  },
+  // vuex 유저 상태 변화 action (인식)
+  userChange() {
+    axios({
+      method: 'get',
+      url: `${API_URL}/myaccounts/profile/${this.state.user_pk}/`,                
+    })
+    .then(res => {
+      this.commit('INFORMATION_UPDATE', res.data)
+      console.log(res.data.pk)
+      })
+      .catch(err => console.log(err))
+  },
+
   },
   modules: {
   }

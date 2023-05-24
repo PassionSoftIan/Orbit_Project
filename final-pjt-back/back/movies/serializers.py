@@ -34,11 +34,12 @@ class userSerializer(serializers.ModelSerializer):
 ############################################
 class ReviewSerializer(serializers.ModelSerializer):
     # user = userSerializer(read_only=True)
+    movie_title = serializers.ReadOnlyField(source='movie.title')
     class Meta():
         model = Review
         fields = '__all__'
 
-        read_only_fields = ('movie', 'user')
+        read_only_fields = ('movie', 'user', 'movie_title')
 
 
 ############################################
@@ -46,12 +47,13 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ReviewReadSerializer(serializers.ModelSerializer):
     user = userSerializer(read_only=True)
     liked_user = userSerializer(many=True, read_only=True)
+    movie_title = serializers.ReadOnlyField(source='movie.title')
 
     class Meta():
         model = Review
         fields = '__all__'
 
-        read_only_fields = ('movie', )
+        read_only_fields = ('movie', 'movie_title')
         
 
 ############################################

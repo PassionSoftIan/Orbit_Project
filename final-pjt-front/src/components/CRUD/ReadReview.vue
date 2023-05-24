@@ -1,6 +1,15 @@
 <template>
   <div>
-    <p>작성자 : {{review.user.nick_name}}</p>
+    <div class="container">
+        <span>작성자 :
+            <span v-if="userCheck">
+                <router-link :to="{name:'others',params:{userpk: review.user.id}}"> {{review.user.nick_name}} </router-link>
+            </span>
+            <span v-else>
+                {{review.user.nick_name}}
+            </span>
+        </span>
+    </div>
     <div v-if="!isupdate">
         <p>평  점 : {{review.vote}}</p>
         <p v-if="review.content">내용 : {{review.content}}</p>
@@ -44,7 +53,13 @@ export default {
     computed:{
         Token(){
             return this.$store.state.Token
-        }
+        },
+        userCheck(){
+            if (this.review.user.id === this.$store.state.user_pk){
+                return false
+            }
+            return true
+        },
     },
     data(){
         return{
@@ -115,6 +130,7 @@ export default {
                     this.like = "좋아요"
                     this.like_method = "POST"
                 }
+                return this.$store.dispatch('userChange')
             })
             .catch((err)=>{
                 console.log(err)
@@ -187,5 +203,9 @@ export default {
 </script>
 
 <style>
-
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 </style>

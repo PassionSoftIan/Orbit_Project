@@ -15,6 +15,7 @@ def get_user(request, user_pk):
         # serializer = ReviewSerializer(reviews, many=True)
         # return Response(serializer.data)
         serializer = UserSerializer(user)
+        # print(serializer.data)
         return Response(serializer.data)
     else:
         coins = request.data.get('coins')

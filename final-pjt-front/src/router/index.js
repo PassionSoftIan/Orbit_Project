@@ -7,6 +7,7 @@ import MovieDetail from '../views/MovieDetail.vue'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import OtherProfileView from '../views/OtherProfileView.vue'
 // Store의 Token 값을 가져오기 위해 (인식)
 import store from '@/store/'
 
@@ -59,6 +60,11 @@ const routes = [
     name: 'profile',
     component: ProfileView
   },
+  {
+    path: '/others/:userpk',
+    name: 'others',
+    component: OtherProfileView
+  },
 ]
 
 const router = new VueRouter({
@@ -72,7 +78,7 @@ router.beforeEach((to, from, next) => {
   // 로그인 여부
   const isLoggedIn = store.state.Token
   // 로그인이 필요한 페이지 지정
-  const authPages = ['home', 'community', 'game', 'logout', 'profile']
+  const authPages = ['home', 'community', 'game', 'logout', 'profile', 'others']
   // 로그인 이후 login, signup 페이지 이동 방지
   const loginPages = ['login','signup']
   const isLoginPages = loginPages.includes(to.name)
