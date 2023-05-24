@@ -49,6 +49,7 @@ export default {
         params:params
       })
       .then(res =>{
+        console.log('################################################')
 
         for(let name in res.data){
           const Movies = {'name':name, 'data':res.data[name]}
