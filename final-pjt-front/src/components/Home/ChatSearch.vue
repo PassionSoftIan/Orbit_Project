@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>삐빅-! 아무 말이나 해주시면 관련 영화를 추천 해드릴게요</p>
-    <p>한 번 검색에 코인 5개 소모!</p>
-    <p>포인트 획득은 게임으로!</p>
+    <p style="font-size: 20px; color: blue">삐빅-! 아무 말이나 해주시면 관련 영화를 추천 해드릴게요</p>
+    <p style="font-size: 20px">한 번 검색에 코인 5개 소모!</p>
+    <p style="font-size: 20px">포인트 획득은 게임으로!</p>
     <input
       type="text"
       name="searchbar"
@@ -69,6 +69,7 @@ export default {
 .search {
   height: 28px;
   background-color: honeydew;
+
 }
 
 </style>

@@ -1,4 +1,5 @@
 <template>
+<div class="login">
   <div class="login-container">
     <!-- <div class="login-background"></div> -->
     <div v-if='!isAuthenticated'>
@@ -19,6 +20,7 @@
       로딩중
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -62,14 +64,19 @@ export default {
   /* height: 300px; */
   color: antiquewhite;
   /* color: black; */
-  
+
+}
+.login {
   /* 배경 */
-  /* background-image: url('../../public/images/Game.gif');
+  background-image: url('../../public/images/Game.gif');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   overflow-x: hidden;
-  height: 91.3vh;
-  width: 100vw; */
+  height: 100vh;
+  width: 100vw;
+  font-size: 20px;
+
 }
+
 </style>

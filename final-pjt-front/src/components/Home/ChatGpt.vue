@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="chat">
     <span v-for="(char, index) in visibleChars" :key="index">
-      <span v-if="char">{{ char }}</span>
+      <span v-if="char"  class="answer">{{ char }}</span>
     </span>
   </div>
 </template>
@@ -37,3 +37,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.chat {
+  background-color: chocolate;
+  border: solid;
+}
+.answer {
+  font-size: 20px;
+}
+</style>

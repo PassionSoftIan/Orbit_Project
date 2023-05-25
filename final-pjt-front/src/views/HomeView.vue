@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <h1>Orbit AI</h1>
-          <img
-        src="../assets/loading.gif"
+    <p style="font-size: 50px; color: black">Orbit AI</p>
+          <!-- <img
+        src="../assets/loading2.gif"
         alt="loading"
         id="loading"
         v-show="is_loading"
-      />
+      /> -->
     <br />
     <ChatSearch @search="search" />
     <hr />
@@ -60,8 +60,8 @@ export default {
           messages: [
             {
               role: "user",
-              content: `너는 지금부터 챗봇이자, 영화 추천 프로그램이야
-            ${searchkeyword}라고 요청이 왔어 요청에 맞게 대답하고 이와 관련해서 한국 제목의 영화 적어도 10개 이상 추천해 줘`,
+              content: `너는 챗봇이야! 내가 말한
+            ${searchkeyword}에 대답해줘! 그리고 내가 말한 내용에 어울리는 영화 10개 추천해줘. 제목은 한글로 답해줘. 추천 꼭 해줘!`,
             },
           ],
         },

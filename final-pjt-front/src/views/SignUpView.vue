@@ -1,4 +1,6 @@
 <template>
+<div class="signup">
+  
   <div class="signup-container">
     <div>
       <h1>Sign Up</h1>
@@ -19,10 +21,13 @@
         <input type="text" id="nickname" @keydown.enter="signUp" v-model="nick_name">
         <br>
         <br>
-        <button @click="signUp">회원가입</button>
-        <button @click="OnClick">login</button>
+        <div class="button">
+        <button @click="signUp">제출</button>
+        <button @click="OnClick">Login Page</button>
+        </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -63,6 +68,22 @@ export default {
   justify-content: center;
   /* align-items: center; */
   height: 300px;
-  color: #f2f2f2;
+  color: antiquewhite;
+  font-size: 20px;
+}
+.signup {
+  /* 배경 */
+  background-image: url('../../public/images/Game.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+.button {
+  display: flex;
+  justify-content: flex-end;
+  
 }
 </style>

@@ -1,8 +1,5 @@
 <template>
   <div class="other">
-    <br>
-    <br>
-    <br>
     <h1>{{other_information.username}} 님의 프로필</h1>
     <div v-if="updateFollowingStatus">
       <button @click="follow">팔로우</button>
@@ -11,12 +8,10 @@
       <button @click="unfollow">언팔로우</button>
     </div>
     <hr>
-    <br>
     <h2>작성 리뷰</h2>
     <hr>
     <div>
       <div v-for="review in other_information.myreviews" :key="review.id">
-        <br>
         <a :href="URL+review.movie">
           {{review.movie_title}}
         </a>
@@ -24,6 +19,7 @@
         내용: {{ review.content }}
         <br>
         평점: {{ review.vote }}
+        <hr>
       </div>
     </div>
   </div>

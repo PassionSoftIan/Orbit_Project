@@ -9,20 +9,21 @@
                 {{review.user.nick_name}}
             </span>
         </span>
+        
     </div>
     <div v-if="!isupdate">
         <p>평  점 : {{review.vote}}</p>
         <p v-if="review.content">내용 : {{review.content}}</p>
+        <br>
         <span>좋아요 : {{review.liked_user.length}}   </span>
-        <button @click="like_fun">{{like}}</button>
+        <img src="@/assets/heart/heart.png/" @click="like_fun" style="width: 22px">
         <div v-if="review.user.id === accounts.pk">
-            <button @click="is_update">수정하기</button>
-            <button @click="update_or_delete('delete')">삭제하기</button>
+            <button @click="is_update" style="background-color: black; color: antiquewhite">수정하기</button>
+            <button @click="update_or_delete('delete')" style="background-color: black; color: antiquewhite">삭제하기</button>
         </div>
         <br>
-        <br>
         <div>
-        <button @click="reviewreview=!reviewreview" v-if="!reviewreview">대댓글 보기</button>
+        <button @click="reviewreview=!reviewreview" v-if="!reviewreview" style="background-color: coral; color: antiquewhite">대댓글 보기</button>
         <button @click="reviewreview=!reviewreview" v-if="reviewreview">대댓글 숨기기</button>
         <div v-if="reviewreview">
         <CommentReadVue v-for="(comment, index) of this.comments" :key="index" :comment="comment" :accounts="accounts" @reload="get_comment"/>
@@ -216,6 +217,7 @@ export default {
 .item{
     border: solid;
     border-color: black;
+    color: black;
 }
 
 .container {

@@ -494,9 +494,9 @@ body a:hover {
     
     /* border:solid; */
     /* border-color:darkmagenta; */
-    width: 30%;
+    width: 55%;
     height: auto;
-    margin-left: 500px;
+    margin-left: 350px;
     
 
 }
@@ -505,7 +505,7 @@ body a:hover {
   color: black;
 }
 #Review::before{
-        background-color:darkcyan;
+        background-color:antiquewhite;
         content: "";
         opacity: 0.8;
         position: absolute;

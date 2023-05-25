@@ -9,7 +9,7 @@
     <br>
 
     
-    <h2>아이디</h2>
+    <h2>아이디: {{username}}</h2>
     <br>
     <br>
 
@@ -72,14 +72,14 @@
       <div v-for="like_review in like_reviews" :key="like_review.id">
         <br>
         <a :href="URL_movie+like_reviews[0].movie">
-          {{ like_reviews[0].movie_title }}
+          {{ like_review.movie_title }}
         </a>
         <br>
-        {{ like_reviews[0].user.nick_name }}
+        {{ like_review.user.nick_name }}
         <br>
-        {{ like_reviews[0].content }}
+        {{ like_review.content }}
         <br>
-        {{ like_reviews[0].created_at }}
+        {{ like_review.created_at }}
       </div>
     </div>
     <br>
@@ -95,9 +95,9 @@
     </div> -->
 
 
-    <button @click="coinUp">coin up</button>
+    <!-- <button @click="coinUp">coin up</button>
     <button @click="coinDown" >coin down</button>
-    <p>{{ coins }}</p>
+    <p>{{ coins }}</p> -->
   </div>
 </template>
 
