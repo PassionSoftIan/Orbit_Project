@@ -1,7 +1,23 @@
 <template>
 <div>
+    <li  v-if="!isupdate">
+    <!-- Avatar -->
+    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+    
+    <!-- Contenedor del Comentario -->
+    <div class="comment-box">
+        <div class="comment-head">
+            <h6 class="comment-name"><a href="http://creaticode.com/blog">{{comment.user.nick_name}}</a></h6>
+            <i class="fa fa-reply"></i>
+            <i class="fa fa-heart"></i>
+        </div>
+        <div class="comment-content">
+            {{comment.content}}
+        </div>
+    </div>
+</li>
 
-  <div v-if="!isupdate">
+  <!-- <div v-if="!isupdate">
     <p>대댓글 작성자 : {{comment.user.nick_name}}</p>
     <p>{{comment.content}}</p>
     <div v-if="comment.user.id === accounts.pk">
@@ -12,7 +28,7 @@
   <div v-if="isupdate">
         <input type="text" v-model="content">
         <button @click="update_or_delete('put')">저장하기</button>
-  </div>
+  </div> -->
 </div>
 </template>
 

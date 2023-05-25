@@ -44,9 +44,7 @@
     <img :src="`https://image.tmdb.org/t/p/w300`+this.director.profile_path" alt="">
 
     <hr>
-    <h3>Reviews</h3>
-    <ReadReviewVue v-for="review of Reviews" :key="review.id" :review="review" :accounts="accounts" @reload="reload" @like="reload"/>
-    <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
+
     <br>
     <br>
     <br>
@@ -119,24 +117,6 @@
                 </div>
                 <div class="swiper-button-prev" slot="button-prev"></div>
                 <div class="swiper-button-next" slot="button-next"></div>
-              </swiper>
-        </div>
-        <!-------//////////// 스틸컷 끝-->
-      </div>
-    </section>
-        <!-------//////////// 비디오 시작-->
-    <section id="top_movies" class="clearfix">
-      <div class="wrapper">
-        <header class="clearfix">
-          <h2>Video</h2>
-
-        </header>
-
-        
-          <div class="post">
-            <swiper
-              class="swiper"
-              :options="swiperOption">
             <swiper-slide v-for="key in this.youtubeKey"
             :key="key.key">
                 <iframe 
@@ -148,17 +128,19 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen></iframe>
             </swiper-slide>
-                <div
-                  class="swiper-pagination"
-                  slot="pagination">
-                </div>
-                <div class="swiper-button-prev" slot="button-prev"></div>
-                <div class="swiper-button-next" slot="button-next"></div>
               </swiper>
         </div>
+        <!-------//////////// 스틸컷 끝-->
       </div>
     </section>
-        <!-------//////////// 비디오 끝-->
+
+        <h3>Reviews</h3>
+    <div class="comments-container">
+      <ul id="comments-list" class="comments-list">
+    <ReadReviewVue v-for="review of Reviews" :key="review.id" :review="review" :accounts="accounts" @reload="reload" @like="reload"/>
+      </ul>
+    </div>
+    <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
     </section>
 
     <p>영화 자체 평점 : {{moviedetail.ours_vote / moviedetail.vote_count ? moviedetail.ours_vote / moviedetail.vote_count : 0 }}</p>
@@ -320,7 +302,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
   /*color variables
    main= #1E1E1E
    secondery= #333333
@@ -372,17 +354,18 @@ body a:hover {
   padding: 6.5em 0;
 }
 #banner_content_wrapper {
-  width: 900px;
-  max-width: 90%;
+  width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 #banner_content_wrapper #poster {
   width: 275px;
   position: relative;
   float: left;
+  
 }
 #poster img {
   width: 100%;
@@ -398,7 +381,7 @@ body a:hover {
 }
 #banner_content_wrapper .content {
   float: left;
-  width: 500px;
+  width: 700px;
   max-width: 90%;
   margin-left: 100px;
 }
@@ -408,8 +391,8 @@ body a:hover {
   margin-left:0px;
   border-radius:7px;
   overflow: auto;
-  height: 350px
-
+  height: 350px;
+  
 }
 .content .title {
   display: inline;
