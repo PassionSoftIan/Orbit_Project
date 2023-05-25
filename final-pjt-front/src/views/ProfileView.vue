@@ -142,7 +142,7 @@ export default {
   methods: {
     // 코인 값들 변환 (인식)
     coinUp(){
-      const coins = 1
+      const coins = 10
 
       const payload = {
         coins,

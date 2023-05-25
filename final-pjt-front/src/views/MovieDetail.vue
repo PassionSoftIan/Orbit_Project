@@ -1,64 +1,5 @@
 <template>
-  <!-- <div v-if="moviedetail">
-    
-    <p>졔목 :  {{this.moviedetail.title}}</p>
-    <p>줄거리 :  {{this.moviedetail.overview}}</p>
-    
-    <img :src="`https://image.tmdb.org/t/p/w500/`+moviedetail.poster_path" alt="">
 
-    <p>평점 : {{this.moviedetail.vote_average}}</p>
-    <p>관객수 : {{this.moviedetail.popularity}}</p>
-
-    <hr>
-    <p>스틸컷</p>
-    <div v-for="img in this.stillCut"
-    :key='img.img_url'>
-    <img :src="'https://image.tmdb.org/t/p/w300'+img.img_url" alt="">
-    </div>
-
-    <hr>
-    youtube
-    <div v-for="key in this.youtubeKey"
-    :key="key.key">
-    {{key.key}}
-    <iframe 
-    width="560"
-    height="315"
-    :src="`https://www.youtube.com/embed/`+key.key"
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowfullscreen></iframe>
-
-    </div>
-    <hr>
-    <h1>actor</h1>
-    <div v-for='actor in this.actors'
-    :key="actor.id">
-    {{actor.name}}
-    <img :src="`https://image.tmdb.org/t/p/w300`+actor.profile_path" alt="">
-    </div>
-    <hr>
-    <h1>director</h1>
-    {{this.director.name}}
-    <img :src="`https://image.tmdb.org/t/p/w300`+this.director.profile_path" alt="">
-
-    <hr>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </div> -->
       <div>
     
 
@@ -142,10 +83,6 @@
     </div>
     <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
     </section>
-
-    <p>영화 자체 평점 : {{moviedetail.ours_vote / moviedetail.vote_count ? moviedetail.ours_vote / moviedetail.vote_count : 0 }}</p>
-    <ReadReviewVue v-for="review of Reviews" :key="review.id" :review="review" :accounts="accounts" @reload="reload" @like="reload"/>
-    <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
 
 
 

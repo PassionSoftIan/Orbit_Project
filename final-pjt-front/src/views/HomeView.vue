@@ -127,11 +127,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 #loading {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
   top: 50%;
+}
+.home{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+
 }
 </style>
