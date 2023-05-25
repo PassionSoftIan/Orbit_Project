@@ -19,6 +19,8 @@ class Movie(models.Model):
     tagline = models.TextField(blank=True)
     revenue = models.FloatField()
     genre = models.ManyToManyField(Genre)
+    ours_vote = models.FloatField(default=0)
+    vote_count = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.title}"
@@ -51,6 +53,10 @@ class stillcut(models.Model):
 class youtube_key(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     key = models.CharField(max_length=20)
+
+
+########################################################
+
 
 
     
