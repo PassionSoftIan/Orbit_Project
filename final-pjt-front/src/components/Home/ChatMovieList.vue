@@ -1,7 +1,7 @@
 <template>
     <div class="middle">
-  
-    <p>여기는 movielist</p>
+      <hr>
+    <p>아래는 추천 영화 중 저희가 가지고 있는 영화 입니다</p>
     <div class="card-wrapper">
     <ChatMovieListItemVue
       :movie="movie"

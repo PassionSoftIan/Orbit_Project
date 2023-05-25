@@ -98,7 +98,6 @@ def review(request, movie_pk):
     
     if request.method == "POST":
         serializer = ReviewSerializer(data=request.data)
-        print("당연히 여긴 오고")
         if serializer.is_valid(raise_exception=True):
             vote_serializer = MoviepopularitySerializer(movie)
             save_vote = vote_serializer.data['ours_vote'] + float(request.data['vote'])

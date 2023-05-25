@@ -39,6 +39,7 @@
     <div id="score">Snake</div>
     <div id="plus"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       var y,
         x; // player
@@ -55,6 +56,8 @@
         tileColor = "#EEEEEE"
       wallColor = "#2E2E2E",
       coinColor = "#4476C6";
+      let get_coin = 0
+
 
       init();
 
@@ -214,6 +217,16 @@
 
       // 동전 생성 및 충돌
       function setCoin() {
+        get_coin += 50
+        const user_pk = {{user_pk}}
+
+        axios({
+          method: 'put',
+          url: `http://127.0.0.1:8000/myaccounts/profile/${user_pk}/`,
+          data: {
+            coins: 50
+          }
+        });
         do {
           var rand = parseInt(Math.random() * ((MY - 2) * (MX - 2)));
           cy = parseInt(rand / (MX - 2)) + 1;
@@ -241,9 +254,10 @@
       }
 
       function gameover() {
-        alert("[Game Over]\nScore: " + score);
-        init();
-        location.reload();
+        clearInterval(keepMove);
+        alert("[Game Over]\nScore: " + score +"\n획득한 코인 : " + get_coin);
+        //init();
+        //location.reload();
       }
     </script>
   </body>
