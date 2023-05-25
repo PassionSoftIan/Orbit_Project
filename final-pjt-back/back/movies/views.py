@@ -62,47 +62,13 @@ def get_movie(request):
 
     ################################### 잠시 로딩 시간이 길어질 것 같아서 이쪽만 주석 처리함
 
-    # movies['수익'] = MovieSerializer(movie, many=True).data
-    # for id, genre in genre_list:
-    #     movie = Movie.objects.filter(genre = id).filter(revenue__gte = 10000).order_by(sort_key)[:100]
-    #     movies[genre] = MovieSerializer(movie, many=True).data
-    # serializers = MovieSerializer(movies, many=True)
+    movies['수익'] = MovieSerializer(movie, many=True).data
+    for id, genre in genre_list:
+        movie = Movie.objects.filter(genre = id).filter(revenue__gte = 10000).order_by(sort_key)[:100]
+        movies[genre] = MovieSerializer(movie, many=True).data
+    serializers = MovieSerializer(movies, many=True)
 
     return Response(movies)
-#############################################################################################################
-    # try:
-    #     genre_list = [('12','모험'),
-    #                 ('14',	'판타지'),
-    #                 ('16',	'애니메이션'),
-    #                 ('18',	'드라마'),
-    #                 ('27',	'공포'),
-    #                 ('28',	'액션'),
-    #                 ('35',	'코미디'),
-    #                 ('36',	'역사'),
-    #                 ('37',	'서부'),
-    #                 ('53',	'스릴러'),
-    #                 ('80',	'범죄'),
-    #                 ('99',	'다큐멘터리'),
-    #                 ('878',	'SF'),
-    #                 ('9648',	'미스터리'),
-    #                 ('10402',	'음악'),
-    #                 ('10749',	'로맨스'),
-    #                 ('10751',	'가족'),
-    #                 ('10752',	'전쟁'),]
-    #     test = request.GET['genre']
-    #     movies = {}
-    #     for genre,name in genre_list:
-    #         movie = Movie.objects.filter(genre = genre).filter(revenue__gte = 50).order_by(sort_key)[:100].annotate(genre_annotation=Value(name,output_field=models.CharField(max_length=50)))
-    #         movies[name] = MovieSerializer(movie,many=True).data
-    #     return Response(movies)
-        
-        
-    # except KeyError:
-    #     movies = Movie.objects.filter(revenue__gte = 10000).order_by(sort_key)[page*20:page*20+20]
-    # # movies = Movie.objects.all()[page*10:page*10+10]
-    # serializers = MovieSerializer(movies, many=True)
-    
-    # return Response(serializers.data)
 
 
 
