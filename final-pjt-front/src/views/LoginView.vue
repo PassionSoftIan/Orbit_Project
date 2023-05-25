@@ -14,8 +14,6 @@
       <br>
       <button @click="LogIn">로그인</button>
       <button @click="OnClick">signup</button>
-
-      <p>{{$store.state.Token}}</p>
     </div>
     <div v-else>
       로딩중
@@ -58,9 +56,20 @@ export default {
 
 .login-container {
   display: flex;
+  margin-top: 15%;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: #f2f2f2;
+  /* align-items: center; */
+  /* height: 300px; */
+  color: antiquewhite;
+  /* color: black; */
+  
+  /* 배경 */
+  /* background-image: url('../../public/images/Game.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  height: 91.3vh;
+  width: 100vw; */
 }
 </style>

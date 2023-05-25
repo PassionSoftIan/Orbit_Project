@@ -59,9 +59,10 @@ export default {
 <style>
 .signup-container {
   display: flex;
+  margin-top: 10%;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  /* align-items: center; */
+  height: 300px;
   color: #f2f2f2;
 }
 </style>

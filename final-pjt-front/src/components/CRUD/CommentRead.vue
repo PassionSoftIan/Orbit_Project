@@ -1,7 +1,5 @@
 <template>
 <div>
-
-
   <div v-if="!isupdate">
     <p>대댓글 작성자 : {{comment.user.nick_name}}</p>
     <p>{{comment.content}}</p>

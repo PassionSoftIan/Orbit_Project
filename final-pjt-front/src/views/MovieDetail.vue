@@ -84,6 +84,8 @@
     <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
     </section>
 
+    <p>영화 자체 평점 : {{moviedetail.ours_vote / moviedetail.vote_count ? (moviedetail.ours_vote / moviedetail.vote_count).toFixed(1) : 0 }}</p>
+
 
 
   </div>
@@ -146,6 +148,9 @@ export default {
       })
       .catch(err => {
         console.log(err)
+        if (err.request.status === 404) {
+          this.$router.push('/NotFound')
+        }
       })
 
       // 리뷰

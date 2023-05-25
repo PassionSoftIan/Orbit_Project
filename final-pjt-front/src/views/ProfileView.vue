@@ -55,9 +55,11 @@
     <hr>
     <div>
       <div v-for="following in followings" :key="following.id">
-        <a :href="URL_others+following.id">
+        <router-link :to="{name:'others', params: {userpk:following.id}}">
           {{ following.nick_name }}
-        </a>
+        </router-link>
+        <!-- <a :href="URL_others+following.id">
+        </a> -->
       </div>
     </div>
     <br>
@@ -167,6 +169,17 @@ export default {
 .profile {
   color: aquamarine;
 }
+
+.profile {
+  background-image: url('../../public/images/Space.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  height: 91.3vh;
+  width: 100vw;
+}
+
 
 /* .button {
   background-color:rgb(211, 63, 174)
