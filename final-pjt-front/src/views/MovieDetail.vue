@@ -1,7 +1,7 @@
 <template>
 
-      <div>
-    
+<div>
+
 
     <section id="banner" class="clearfix">
       <div id="banner_content_wrapper">
@@ -13,10 +13,18 @@
           />
         </div>
         <div class="content">
-          <h2 class="title">{{this.moviedetail.title}}</h2>
+          <h2 class="title">{{this.moviedetail.title}}({{this.moviedetail.release_date.slice(0,4)}})</h2>
           <div class="card-description">
+          <div class="stars-wrapper">
+            <h2 class="site">TMDB({{this.moviedetail.vote_average/2}}/5)</h2>
+            <span class="Stars" :style="`--rating: ${(this.moviedetail.vote_average/2).toFixed(2)}`"></span>
+          </div>
+         <div class="stars-wrapper">
+            <h2 class="site">Orbit({{moviedetail.ours_vote / moviedetail.vote_count ? (moviedetail.ours_vote / moviedetail.vote_count).toFixed(1) : 0 }}/5)</h2>
+            <span class="Stars" :style="`--rating: ${moviedetail.ours_vote / moviedetail.vote_count ? (moviedetail.ours_vote / moviedetail.vote_count).toFixed(2) : 0 }`"></span>
+          </div>
           <p class="info">
-            {{this.moviedetail.vote_average}}/10<span>|</span>{{this.moviedetail.release_date}}<span>|</span>
+            
             <span v-for="ger in this.moviedetail.genre"
             :key="ger.id">{{ger.name}}</span>
           </p>
@@ -74,21 +82,21 @@
         <!-------//////////// 스틸컷 끝-->
       </div>
     </section>
-
-        <h3>Reviews</h3>
+  <div id="Review">
+    <h3>Review</h3>
+    
     <div class="comments-container">
-      <ul id="comments-list" class="comments-list">
+      <!-- <div id="comments-list" class="comments-list"> -->
+
     <ReadReviewVue v-for="review of Reviews" :key="review.id" :review="review" :accounts="accounts" @reload="reload" @like="reload"/>
-      </ul>
+
+      <!-- </div> -->
     </div>
     <CreateReviewVue :movie_id="this.$route.params.moviepk" :accounts="accounts" @created="reload"/>
+   </div>
     </section>
 
-    <p>영화 자체 평점 : {{moviedetail.ours_vote / moviedetail.vote_count ? (moviedetail.ours_vote / moviedetail.vote_count).toFixed(1) : 0 }}</p>
-
-
-
-  </div>
+</div>
 </template>
 
 <script>
@@ -317,6 +325,7 @@ body a:hover {
 #banner_content_wrapper #poster .playbutton {
   position: absolute;
   width: 80px;
+  
   left: 50%;
   top: 50%;
   margin: -40px;
@@ -333,7 +342,7 @@ body a:hover {
   margin-left:0px;
   border-radius:7px;
   overflow: auto;
-  height: 350px;
+  height: 391.5px;
   
 }
 .content .title {
@@ -452,7 +461,7 @@ body a:hover {
  
   /* 추가하기 */
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; 
   overflow: hidden;
 }
@@ -480,7 +489,31 @@ body a:hover {
 .card-description:has(+ .content__more-btn:checked) {
   -webkit-line-clamp:unset
 }
+#Review{
+    position: relative;
+    
+    /* border:solid; */
+    /* border-color:darkmagenta; */
+    width: 30%;
+    height: auto;
+    margin-left: 500px;
+    
 
+}
+
+#Review > h3 {
+  color: black;
+}
+#Review::before{
+        background-color:darkcyan;
+        content: "";
+        opacity: 0.8;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
 
 
 </style>

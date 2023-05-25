@@ -68,10 +68,12 @@ export default {
 <style scoped>
 
 /* .container{width:1200px; max-width:none!important;} */
-
+.swiper{
+  display: flex;
+}
 .swiper-container {
   overflow: visible;
-  margin: 20px;
+  /* margin: 20px; */
   width:1400px;
   /* max-width:none!important; */
   

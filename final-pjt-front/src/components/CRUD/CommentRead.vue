@@ -11,6 +11,7 @@
   <div v-if="isupdate">
         <input type="text" v-model="content">
         <button @click="update_or_delete('put')">저장하기</button>
+        <button @click="isupdate=!isupdate">취소</button>
   </div>
 </div>
 </template>

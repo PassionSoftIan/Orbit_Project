@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="item">
     <div class="container">
         <span>작성자 :
             <span v-if="userCheck">
@@ -21,9 +21,16 @@
         </div>
         <br>
         <br>
+        <div>
+        <button @click="reviewreview=!reviewreview" v-if="!reviewreview">대댓글 보기</button>
+        <button @click="reviewreview=!reviewreview" v-if="reviewreview">대댓글 숨기기</button>
+        <div v-if="reviewreview">
         <CommentReadVue v-for="(comment, index) of this.comments" :key="index" :comment="comment" :accounts="accounts" @reload="get_comment"/>
         <input type="text" v-model="comment_input">
-        <button @click="create_comment">작성</button>
+        <button @click="create_comment" v-if="reviewreview">작성</button>
+        </div>
+        </div>
+        <br>
     </div>
     <div v-if="isupdate">
         <span>평  점 : </span>
@@ -71,7 +78,10 @@ export default {
             
             isupdate: false,
             like: "좋아요",
-            like_method: "POST"
+            like_method: "POST",
+
+            create: false,
+            reviewreview: false
         }
     },
     methods:{
@@ -203,6 +213,11 @@ export default {
 </script>
 
 <style scoped>
+.item{
+    border: solid;
+    border-color: black;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -233,10 +248,10 @@ background: #dee1e3;
 /** ====================
 * Lista de Comentarios
 =======================*/
-.comments-container {
+/* .comments-container {
 margin: 60px auto 15px;
 width: 768px;
-}
+} */
 
 .comments-container h1 {
 font-size: 36px;
