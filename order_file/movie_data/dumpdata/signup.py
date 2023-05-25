@@ -21,7 +21,7 @@ def signup(i):
 
 key = []
 
-for i in range(1, 11):
+for i in range(1, 1000):
     signup(i)
 
 

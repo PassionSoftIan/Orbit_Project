@@ -119,15 +119,36 @@
         </tr>
       </table>
       <p id="info">2048 Copyright (c) YJYOON All rights reserved.</p>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script>
         var board = Array(Array(0, 0, 0, 0), Array(0, 0, 0, 0), Array(0, 0, 0, 0), Array(0, 0, 0, 0));
         var tableID = Array(Array("00", "01", "02", "03"), Array("10", "11", "12", "13"), Array("20", "21", "22", "23"), Array("30", "31", "32", "33"));
         var score;
+        let get_coin = 0
+        let is_gameover = false
+        let make_time_set = false
 
         // 키보드 입력 처리
         document.onkeydown = keyDownEventHandler;
+        
 
         function keyDownEventHandler(e) {
+          if (is_gameover) return;
+          make_time_set = true
+          setTimeout(()=>{make_time_set=false}, 100)
+          if(e.keyCode >= 37 && e.keyCode <= 40)
+          {
+            get_coin += 1
+            const user_pk = {{user_pk}}
+            axios({
+              method: 'put',
+              url: `http://127.0.0.1:8000/myaccounts/profile/${user_pk}/`,
+              data: {
+                coins: 1
+              }
+            });
+          }
+
           switch (e.keyCode) {
             case 38:
               moveDir(0);
@@ -364,6 +385,7 @@
 
         // 게임오버 체크
         function checkGameOver() {
+          if (is_gameover) return;
           for (var i = 0; i < 4; i++) {
             var colCheck = board[i][0];
             if (colCheck == 0) 
@@ -391,8 +413,9 @@
 
         // 게임오버 처리
         function gameover() {
-          alert("[Game Over]\nMax: " + getMaxNum() + "\nScore" + score);
-          init();
+          is_gameover = true
+          alert("[Game Over]\nMax : " + getMaxNum() + "\nScore : " + score +"\n획득한 코인 : " + (get_coin));
+          //init();
         }
       </script>
     </body>
