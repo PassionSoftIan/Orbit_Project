@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="other">
     <br>
     <br>
     <br>
@@ -74,7 +74,10 @@ export default {
           this.other_information = res.data;
         })
         .catch((err) => {
-          console.log(err);
+          console.log(typeof err.request.status);
+          if (err.request.status === 404){
+            this.$router.push('/NotFound')
+          }
         });
     },
     follow() {
@@ -112,5 +115,13 @@ export default {
 </script>
 
 <style>
-
+.other {
+  background-image: url('../../public/images/Space.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  height: 91.3vh;
+  width: 100vw;
+}
 </style>

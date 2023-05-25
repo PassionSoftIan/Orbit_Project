@@ -135,7 +135,7 @@ def review(request, movie_pk):
         print("당연히 여긴 오고")
         if serializer.is_valid(raise_exception=True):
             vote_serializer = MoviepopularitySerializer(movie)
-            save_vote = vote_serializer.data['ours_vote'] + request.data['vote']
+            save_vote = vote_serializer.data['ours_vote'] + float(request.data['vote'])
             save_vote_count = vote_serializer.data['vote_count'] + 1
             vote_serializer = MoviepopularitySerializer(movie, data={'ours_vote': save_vote, 'vote_count': save_vote_count})
             if vote_serializer.is_valid(raise_exception=True):

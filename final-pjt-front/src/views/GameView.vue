@@ -32,4 +32,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.game {
+  background-image: url('../../public/images/Game.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  height: 91.3vh;
+  width: 100vw;
+}
+</style>
