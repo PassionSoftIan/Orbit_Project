@@ -15,7 +15,7 @@
       }
 
       #gameField {
-        margin-left: 20px;
+        margin-left: 2px;
         margin-top: 20px;
         float: left;
       }
@@ -99,7 +99,6 @@
       <div id="gameover">
         <center>
           <h1>Game Over</h1>
-          <h4>press 'F5' to restart</h4>
         </center>
       </div>
       <div id="pause">
@@ -150,6 +149,7 @@
           <i></i>
         </div>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script>
         var copyright = "Copyright (c) 2020 YJYOON All rights reserved.";
         var H = 34,
@@ -476,12 +476,17 @@
           levelStack = 0;
         var isPaused = false;
 
+        let get_coin = 0
+        let is_gameover = false
+        
+
         init();
 
         // 키 입력 처리
         document.onkeydown = keyDownEventHandler;
 
         function keyDownEventHandler(e) {
+          if(is_gameover) return
           switch (e.keyCode) {
             case 37:
               setTimeout("moveLR(-1)", 0);
@@ -596,6 +601,17 @@
           levelStack++;
           leveling();
           movingThread = setTimeout("moveDown()", movingSpeed);
+          
+          get_coin += 50
+          const user_pk = {{user_pk}}
+  
+          axios({
+            method: 'put',
+            url: `http://127.0.0.1:8000/myaccounts/profile/${user_pk}/`,
+            data: {
+              coins: 50
+            }
+          })
         }
 
         function displayNextShape() {
@@ -623,6 +639,7 @@
           
         // 도형 조작
         function moveDown() {
+          if(is_gameover) return
           if (!canMove(1, 0)) {
             commitExist();
             checkLine();
@@ -797,41 +814,43 @@
 
         // 종료 및 일시정지
         function gameOver() {
-          clearTimeout(movingThread);
           initExistField();
-          alert("[Game Over]\nLevel: " + level + "\nScore: " + score);
-          document
-            .getElementById("gameField")
-            .style
-            .visibility = "hidden";
-          document
-            .getElementById("gameover")
-            .style
-            .visibility = "visible";
+          clearTimeout(movingThread);
+          is_gameover = true
+
+          alert("[Game Over]\nLevel: " + level + "\nScore: " + score +"\n획득한 코인 : " + (get_coin+50));
+          //document
+            //.getElementById("gameField")
+            //.style
+            //.visibility = "hidden";
+          //document
+            //.getElementById("gameover")
+            //.style
+            //.visibility = "visible";
         }
 
         function pause() {
           if (isPaused) {
             movingThread = setTimeout("moveDown()", movingSpeed);
-            document
-              .getElementById("pause")
-              .style
-              .visibility = "hidden";
-            document
-              .getElementById("gameField")
-              .style
-              .visibility = "visible";
+            //document
+              //.getElementById("pause")
+              //.style
+              //.visibility = "hidden";
+            //document
+              //.getElementById("gameField")
+              //.style
+              //.visibility = "visible";
             isPaused = false;
           } else {
             clearTimeout(movingThread);
-            document
-              .getElementById("gameField")
-              .style
-              .visibility = "hidden";
-            document
-              .getElementById("pause")
-              .style
-              .visibility = "visible";
+            //document
+              //.getElementById("gameField")
+              //.style
+              //.visibility = "hidden";
+            //document
+              //.getElementById("pause")
+              //.style
+              //.visibility = "visible";
             isPaused = true;
           }
         }

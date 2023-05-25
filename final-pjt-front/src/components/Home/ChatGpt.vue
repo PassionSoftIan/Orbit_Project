@@ -32,7 +32,7 @@ export default {
           clearInterval(intervalId);
           this.$emit("print_clear")
         }
-      }, 50); // 각 글자를 표시하는 간격 (200ms로 설정됨)
+      }, 30); // 각 글자를 표시하는 간격 (200ms로 설정됨)
     }
   }
 };

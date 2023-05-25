@@ -1,4 +1,5 @@
 <template>
+  <!-- 사용 안함 -->
   <div class="gamecontainer" @click="end">
     <iframe :src="game_url" frameborder="0" :class="`_${game}`"></iframe>
   </div>
@@ -10,9 +11,14 @@ export default {
   props: {
     game: String,
   },
+  computed:{
+    user_pk(){
+        return this.$store.state.user_pk
+    }
+  },
   data() {
     return {
-      game_url: `http://127.0.0.1:8000/game/${this.game}`,
+      game_url: null,
     };
   },
   methods: {
@@ -20,6 +26,9 @@ export default {
       this.$emit("end");
     },
   },
+  created(){
+    this.game_url = `http://127.0.0.1:8000/game/${this.game}/${this.user_pk}`
+  }
 };
 </script>
 
