@@ -174,13 +174,13 @@
 import axios from 'axios'
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
-// import CreateReviewVue from '../components/CRUD/CreateReview.vue'
+import CreateReviewVue from '../components/CRUD/CreateReview.vue'
 import ReadReviewVue from '../components/CRUD/ReadReview.vue'
 
 export default {
   name:'MovieDetail',
    components: {
-  //   CreateReviewVue,
+    CreateReviewVue,
     ReadReviewVue,
     Swiper,
     SwiperSlide
