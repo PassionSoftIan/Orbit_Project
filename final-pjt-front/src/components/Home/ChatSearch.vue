@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>ChatSearch 에서 인사 드립니다</p>
+    <p>삐빅-! 아무 말이나 해주시면 관련 영화를 추천 해드릴게요</p>
     <input
       type="text"
       name="searchbar"

@@ -3,7 +3,6 @@
   <b-navbar toggleable="lg" type="dark" variant="dark" class="sticky-top" >
     <div class="container">
     <router-link to="/" class="navbar-brand">
-    <!-- <img src="../images/logo_transparent.png" class='logo' alt=""> -->
     <h1 class="logo">Orbit</h1>
     </router-link>
 
