@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <p style="font-size: 50px; color: black">Orbit AI</p>
-          <!-- <img
+    <!-- <img
         src="../assets/loading2.gif"
         alt="loading"
         id="loading"
@@ -10,8 +10,15 @@
     <br />
     <ChatSearch @search="search" />
     <hr />
-    <ChatGpt v-if="chatgpt_answer" :message="chatgpt_answer" @print_clear="print_movie"/>
-    <ChatMovieList v-if="get_chatgpt_answer" :movie_list="response_movie_list" />
+    <ChatGpt
+      v-if="chatgpt_answer"
+      :message="chatgpt_answer"
+      @print_clear="print_movie"
+    />
+    <ChatMovieList
+      v-if="get_chatgpt_answer"
+      :movie_list="response_movie_list"
+    />
   </div>
 </template>
 
@@ -35,7 +42,7 @@ export default {
       movie_list: {},
       response_movie_list: [],
       get_chatgpt_answer: false,
-      is_loading:false,
+      is_loading: false,
     };
   },
   methods: {
@@ -60,15 +67,15 @@ export default {
           messages: [
             {
               role: "user",
-              content: `너는 챗봇이야! 내가 말한
-            ${searchkeyword}에 대답해줘! 그리고 내가 말한 내용에 어울리는 영화 10개 추천해줘. 제목은 한글로 답해줘. 추천 꼭 해줘!`,
+              content: `너는 챗봇이자, 영화 추천 프로그램이야
+            ${searchkeyword}라는 요청이 들어왔어 요청에 대답해줘! 그리고 내가 말한 요청에 어울리는 한글 제목의 영화 10개 추천해줘.`,
             },
           ],
         },
       })
         .then((response) => {
           this.is_loading = false;
-          this.chatgpt_answer = response.data.choices[0].message.content
+          this.chatgpt_answer = response.data.choices[0].message.content;
           this.change_answer_to_object();
         })
         .catch((error) => {
@@ -120,24 +127,23 @@ export default {
           console.log(error);
         });
     },
-    print_movie(){
-      this.get_chatgpt_answer = true
-    }
+    print_movie() {
+      this.get_chatgpt_answer = true;
+    },
   },
 };
 </script>
 
-<style >
+<style>
 #loading {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
   top: 50%;
 }
-.home{
+.home {
   width: 80%;
   height: 100%;
   margin-left: 10%;
-
 }
 </style>
