@@ -7,17 +7,25 @@
 
     <GameifameVue v-if="game" :game="game" @end="end" /> -->
 
-    <b-button @click="ModalReset('tetris')" variant='Dark' ><img src="@/images/tetris.png" alt=""></b-button>
-    <b-button @click="ModalReset('snake')" variant='Dark' ><img src="@/images/snake.png" alt=""></b-button>
-    <b-button @click="ModalReset('2048')" variant='Dark' ><img src="@/images/2048.png" alt=""></b-button>
+    <b-button @click="ModalReset('tetris')" variant="Dark"
+      ><img src="@/images/tetris.png" alt=""
+    /></b-button>
+    <b-button @click="ModalReset('snake')" variant="Dark"
+      ><img src="@/images/snake.png" alt=""
+    /></b-button>
+    <b-button @click="ModalReset('2048')" variant="Dark"
+      ><img src="@/images/2048.png" alt=""
+    /></b-button>
 
-      <b-modal v-model="modalShow" >
-        
-        <!-- <input type="text" @input='changeKeyword' @keyup="SearchTitle"> -->
-        <iframe :src="game_url" frameborder="0" :class="`_${game}`" ref="game_iframe"></iframe>
-
-      </b-modal>
-
+    <b-modal v-model="modalShow">
+      <!-- <input type="text" @input='changeKeyword' @keyup="SearchTitle"> -->
+      <iframe
+        :src="game_url"
+        frameborder="0"
+        :class="`_${game}`"
+        ref="game_iframe"
+      ></iframe>
+    </b-modal>
   </div>
 </template>
 
@@ -28,13 +36,13 @@ export default {
   components: {
     // GameifameVue,
   },
-  computed:{
-    user_pk(){
-        return this.$store.state.user_pk
+  computed: {
+    user_pk() {
+      return this.$store.state.user_pk;
     },
-    game_url(){
-      return `http://127.0.0.1:8000/game/${this.game}/${this.user_pk}`
-    }
+    game_url() {
+      return `http://127.0.0.1:8000/game/${this.game}/${this.user_pk}`;
+    },
   },
   data() {
     return {
@@ -42,13 +50,13 @@ export default {
       modalShow: false,
     };
   },
-  watch:{
-    modalShow:{
+  watch: {
+    modalShow: {
       handler(newvalue, oldvalue) {
-        if (!newvalue && oldvalue){
-          this.$store.dispatch("userChange")
+        if (!newvalue && oldvalue) {
+          this.$store.dispatch("userChange");
         }
-      }
+      },
     },
   },
   methods: {
@@ -58,22 +66,21 @@ export default {
     end() {
       this.game = null;
     },
-    ModalReset(game_name){
-      if (!this.modalShow){
+    ModalReset(game_name) {
+      if (!this.modalShow) {
         this.game = game_name;
-        this.SearchTitleList = null
-        this.modalShow = !this.modalShow
-        console.log(this.$refs.game_iframe)
-    }
-    
+        this.SearchTitleList = null;
+        this.modalShow = !this.modalShow;
+        console.log(this.$refs.game_iframe);
+      }
+    },
   },
-}
-}
+};
 </script>
 
 <style scoped>
 .game {
-  background-image: url('../../public/images/Game.gif');
+  background-image: url("../../public/images/Game.gif");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
